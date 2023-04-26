@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<!-- Quelle: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_sidebar_responsive -->
+<!-- Dieses Dokument wurde erstellt durch Moritz Reindl -->
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/Sidebar.css">
+</head>
+<body class="body">
+
+<div class="sidebar">
+  <a href="#profil">Profil</a>
+  <a class="active" href="#decks">Meine Decks</a>
+  <a href="#suchen">Suchen</a>
+</div>
+<div class="decks">
+	<h1 class="h1"><a href="MeineThemen.html">Meine Themen</a>: <a href="MeineThemen.html">Wirtschaftsinformatik</a>: Datenbanksysteme</h1>
+	<input type="submit" value="speichern" class="buttonSaveQuestion">
+	<input type="submit" value="Abbrechen" class="buttonCancel">
+</div>
+<div class="answer">
+  <div class="grid-item">Frage:</div>
+  <input type="text" id="fragenText" name="fragenText"> 
+  <div class="grid-item">Bilddatei (optional):</div>  
+    <select name="decks" id="decks">
+  	<option value="test">Hier Bildupload ermöglichen</option>
+  </select>
+  <div class="grid-item">Antwortm&#246;glichkeiten:</div>
+  <div class="answerOptions">
+  	  <div class="grid-item">Antwort A:</div>
+  	  <input type="text" id="antwortA" name="antwortA"> 
+	  <div class="grid-item">Antwort B:</div>
+  	  <input type="text" id="antwortB" name="antwortB"> 
+	  <div class="grid-item">Antwort C:</div>
+  	  <input type="text" id="antwortC" name="antwortC"> 
+	  <div class="grid-item">Antwort D:</div>
+  	  <input type="text" id="antwortD" name="antwortD">
+  	  <div class="grid-item">Korrekte Antwort:</div>  
+      <select name="answerSolution" id="answerSolution">
+  	  	<option value="a">Antwort A</option>
+  	  	<option value="b">Anwort B</option>
+  	  	<option value="c">Anwort C</option>
+  	  	<option value="d">Anwort D</option>
+  	  </select>  
+  </div>
+</div>
+</body>
+</html>

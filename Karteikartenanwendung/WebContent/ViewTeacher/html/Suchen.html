@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<!-- Quelle: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_sidebar_responsive -->
+<!-- Dieses Dokument wurde erstellt durch Moritz Reindl -->
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/Sidebar.css">
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="#profil">Profil</a>
+  <a href="#decks">Meine Decks</a>
+  <a class="active" href="#suchen">Suchen</a>
+</div>
+<h1 class="h1">Suchen</h1>
+<div class="search">
+  <div class="grid-item">Thema:</div>
+  <select name="themen" id="themen">
+  	<option value="test">Hier Themen auflisten</option>
+  </select>
+  <div class="grid-item">Deck:</div>  
+    <select name="decks" id="decks">
+  	<option value="test">Hier Decks zum passenden Thema auflisten</option>
+  </select>
+  <div class="grid-item">Schlagwort:</div>
+  <input type="text" id="schlagwort" name="schlagwort"> 
+</div>
+<div class="search">
+	<h2 class="h2">Ergebnisse:</h2>
+</div>
+</body>
+</html>

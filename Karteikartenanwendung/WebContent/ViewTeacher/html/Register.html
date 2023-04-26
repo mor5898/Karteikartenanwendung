@@ -1,0 +1,28 @@
+<!-- Erstellt durch: Moritz Reindl -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register page</title>
+	<link rel="stylesheet" href="../css/Login.css">
+</head>
+<body>
+	<form class="logo">
+		<img src="/../../images/logo.jpeg" alt="Logo" width="200" height="200">
+	</form>
+	<form class="login">
+		<label for="email">Email:</label><br>
+		<input type="email" id="email" name="email" required><br>
+		<label for="passwort">Passwort:</label><br>
+		<input type="passwort" id="passwort" name="passwort" required><br><br>
+		<label for="passwortWiederholen">Passwort wiederholen:</label><br>
+		<input type="passwortWiederholen" id="passwortWiederholen" name="passwordpasswortWiederholen" required><br><br>	
+		<label for="rollen">Rolle:</label>
+  		<select name="rollen" id="rollen">
+    		<option value="dozent">Dozent</option>
+    		<option value="lernender">Lernender</option>
+   		 </select>
+  		<br><br>
+    	<input type="submit" value="Registrieren">
+	</form>
+</body>
+</html>
