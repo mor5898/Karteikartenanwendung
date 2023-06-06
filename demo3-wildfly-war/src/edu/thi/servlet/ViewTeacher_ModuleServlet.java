@@ -99,17 +99,22 @@ public class ViewTeacher_ModuleServlet extends HttpServlet {
 		String studiengangname = request.getParameter("studienfachId");
 		String userId = request.getParameter("userid");
 		String modulname = request.getParameter("modul");
+		
 		if (studiengangname.isEmpty() || userId.isEmpty()) {
-			System.out.println("One of those bitches be empty ass");
+			System.out.println("Fehler bei Übergabe der Attribute!");
 		}
+		
 		System.out.println(modulname + studiengangname + userId);
+		
 		ViewTeacher_ModuleBean modul = new ViewTeacher_ModuleBean();
 		modul.setModulname(modulname);
 		modul.setStudiengangname(studiengangname);
 		modul.setUserId(userId);
+		
 		ViewTeacher_StudiengaengeBean studiengang = new ViewTeacher_StudiengaengeBean();
 		studiengang.setStudiengangname(studiengangname);
 		studiengang.setUserId(userId);
+		
 		insertModul(modul);
 
 		List<ViewTeacher_ModuleBean> module = new ArrayList<>();
@@ -130,12 +135,13 @@ public class ViewTeacher_ModuleServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 		System.out.println(module.get(0).toString());
+		
 		request.setAttribute("module", module);
 		request.setAttribute("studienfachId", studiengang);
 		request.setAttribute("userid", userId);
-		//request.getRequestDispatcher("jsp/ViewTeacher_Module.jsp").forward(request,
-		//response);
+
 		HttpSession session = request.getSession();
 		session.setAttribute("module", module);
 		session.setAttribute("studienfachId", studiengang);

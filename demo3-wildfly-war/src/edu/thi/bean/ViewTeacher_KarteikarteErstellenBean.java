@@ -13,13 +13,44 @@ public class ViewTeacher_KarteikarteErstellenBean implements Serializable {
 	private String korrekteAntwort;
 	private String begruendung;
 	private String titel;
-	private Integer karteikartenId = 1;
-	private Integer modulId;
-	private Integer studienfachId;
-	private Integer userId;
+	private Integer karteikartenId;
+	private String modulname;
+	private String studiengangname;
+	private String userId;
 	// Hier muss noch dieses Attribut ergänzt werden
 	private byte[] bild;
+	
+	public String getUserId() {
+		return userId;
+	}
 
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public byte[] getBild() {
+		return bild;
+	}
+
+	public void setBild(byte[] bild) {
+		this.bild = bild;
+	}
+
+	public String getModulname() {
+		return modulname;
+	}
+
+	public void setModulname(String modulname) {
+		this.modulname = modulname;
+	}
+
+	public String getStudiengangname() {
+		return studiengangname;
+	}
+
+	public void setStudiengangname(String studiengangname) {
+		this.studiengangname = studiengangname;
+	}
 	/*
 	 * public byte[] getBild() { return bild; } public void setBild(byte[] bild) {
 	 * this.bild = bild; }
@@ -96,27 +127,4 @@ public class ViewTeacher_KarteikarteErstellenBean implements Serializable {
 		this.karteikartenId = karteikartenId;
 	}
 
-	public Integer getmodulId() {
-		return modulId;
-	}
-
-	public void setmodulId(Integer modulId) {
-		this.modulId = modulId;
-	}
-
-	public Integer getuserId() {
-		return userId;
-	}
-
-	public void setuserId(Integer userId) {
-		this.userId = userId;
-	}
-
-	public Integer getstudienfachId() {
-		return studienfachId;
-	}
-
-	public void setstudienfachId(Integer studienfachId) {
-		this.studienfachId = studienfachId;
-	}
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<!-- Dieses Dokument wurde erstellt durch Fatih Doruk und Riza Dursun -->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../css/erstellen.css">
@@ -17,7 +18,7 @@
 				href="MeineThemen.html">Wirtschaftsinformatik</a>: Datenbanksysteme
 		</h1>
 	</div>
-	<form method="post" action="../../KarteikarteErstellen" enctype="multipart/form-data">
+	<form method="post" action="../ViewTeacher_KarteikarteErstellenServlet" enctype="multipart/form-data">
 	<div class="answer">
 		<div class="grid-item">Titel:</div>
 		<input type="text" id="titel" name="titel">
@@ -25,6 +26,7 @@
 		<input type="text" id="fragentext" name="fragentext">
 		<div class="grid-item">Bilddatei (optional):</div>
 		
+	<button type="submit" name="submit">speichern</button>
 		<input type="file" name="image" id="image" accept="image/*" multiple>
 		
 		<div class="grid-item">Antwortm&#246;glichkeiten:</div>
@@ -48,7 +50,6 @@
 		<div class="grid-item">Begruendung der Antwort:</div>
 		<input type="text" id="begruendungstext" name="begruendungstext">
 		<div class="button">
-	<input type="submit" value="speichern" class="buttonSaveQuestion">
 	
 	</div>
 	</div>

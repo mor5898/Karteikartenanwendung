@@ -11,8 +11,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import edu.thi.bean.ViewTeacher_KarteikarteErstellenBean;
-import edu.thi.bean.ViewTeacher_ModuleBean;
-import edu.thi.bean.ViewTeacher_StudiengaengeBean;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,10 +20,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Erstellt durch: Moritz Reindl
+ * Servlet implementation class ViewTeacher_KarteikarteBearbeitenServlet
  */
-@WebServlet("/ViewTeacher_KarteikartenServlet")
-public class ViewTeacher_KarteikartenServlet extends HttpServlet {
+@WebServlet("/ViewTeacher_KarteikarteBearbeitenServlet")
+public class ViewTeacher_KarteikarteBearbeitenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Resource(lookup = "java:jboss/datasources/MySqlThidbDS")
@@ -34,7 +32,7 @@ public class ViewTeacher_KarteikartenServlet extends HttpServlet {
     /**
      * Default constructor. 
      */
-    public ViewTeacher_KarteikartenServlet() {
+    public ViewTeacher_KarteikarteBearbeitenServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -54,51 +52,61 @@ public class ViewTeacher_KarteikartenServlet extends HttpServlet {
 		String studiengangname = request.getParameter("studienfachId");
 		String userId = request.getParameter("userid");
 		String modulname = request.getParameter("modulname");
-		System.out.println("Studiengang: " + studiengangname + " userId: " + userId + " modulname: " + modulname);
+		String karteikartenId = request.getParameter("karteikartenId");
+		String fragentext = request.getParameter("fragentext");
+		String titel = request.getParameter("titel");
+		System.out.println("Daten: " + studiengangname + userId + modulname + karteikartenId + fragentext + titel);
+		ViewTeacher_KarteikarteErstellenBean karteikarteForList = new ViewTeacher_KarteikarteErstellenBean();
 		
-		ViewTeacher_StudiengaengeBean studiengang = new ViewTeacher_StudiengaengeBean();
-		studiengang.setStudiengangname(studiengangname);
-		studiengang.setUserId(userId);
-		
-		ViewTeacher_ModuleBean modul = new ViewTeacher_ModuleBean();
-		modul.setStudiengangname(studiengangname);
-		modul.setUserId(userId);
-		modul.setModulname(modulname);
-		
-		List<ViewTeacher_KarteikarteErstellenBean> karteikarten = new ArrayList<>();
+		//List<ViewTeacher_KarteikarteErstellenBean> karteikarten = new ArrayList<>();
 
 		try (Connection con = ds.getConnection();) {
-			String query = "SELECT karteikartenId, titel, fragentext, modulname FROM karteikarte WHERE userId = '" + userId + "' AND studiengangname = '" + studiengangname + "'"
-					+ " AND modulname = '" + modulname + "'";
+			/*String query = "SELECT * FROM karteikarte WHERE userId = '" + userId + "' AND studiengangname = '" + studiengangname + "'"
+					+ " AND modulname = '" + modulname + "'" + " AND karteikartenId = " + karteikartenId + " AND fragentext = '" + fragentext + "'"
+					+ " AND titel = '" + titel + "'";*/
+			String query = "SELECT * FROM karteikarte WHERE karteikartenId = " + karteikartenId;
 			PreparedStatement statement = con.prepareStatement(query);
 			ResultSet resultSet = statement.executeQuery();
-
-			while (resultSet.next()) {
+			//System.out.println(resultSet.next());
+			if (resultSet.next()) {
+				
 				String modulnameForList = resultSet.getString("modulname");
 				String fragentextForList = resultSet.getString("fragentext");
 				String titelForList = resultSet.getString("titel");
 				int karteikartenIdForList = resultSet.getInt("karteikartenId");
-				ViewTeacher_KarteikarteErstellenBean karteikarteForList = new ViewTeacher_KarteikarteErstellenBean();
+				String antwortAForList = resultSet.getString("antwortA");
+				String antwortBForList = resultSet.getString("antwortB");
+				String antwortCForList = resultSet.getString("antwortC");
+				String antwortDForList = resultSet.getString("antwortD");
+				String korrekteAntwortForList = resultSet.getString("korrekteAntwort");
+				String begrundungstextForList = resultSet.getString("begruendungstext");
+				
 				karteikarteForList.setModulname(modulnameForList);
 				karteikarteForList.setStudiengangname(studiengangname);
 				karteikarteForList.setUserId(userId);
 				karteikarteForList.setfragentext(fragentextForList);
 				karteikarteForList.settitel(titelForList);
 				karteikarteForList.setkarteikartenId(karteikartenIdForList);
-				karteikarten.add(karteikarteForList);
+				karteikarteForList.setantwortA(antwortAForList);
+				karteikarteForList.setantwortB(antwortBForList);
+				karteikarteForList.setantwortC(antwortCForList);
+				karteikarteForList.setantwortD(antwortDForList);
+				karteikarteForList.setkorrekteAntwort(korrekteAntwortForList);
+				karteikarteForList.setbegruendung(begrundungstextForList);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("Erste Karteikarte: " + karteikarten.get(0) + " Modul: " + modul.getModulname() + " Studiengang: " + studiengang.getStudiengangname() + " User: " + userId);
-		
 		HttpSession session = request.getSession();
-		session.setAttribute("karteikarten", karteikarten);
-		session.setAttribute("modul", modul);
-		session.setAttribute("studienfachId", studiengang);
-		session.setAttribute("userid", userId);
-		response.sendRedirect("jsp/ViewTeacher_Karteikarten.jsp");
+		session.setAttribute("karteikarte", karteikarteForList);
+		System.out.println(karteikarteForList.getkarteikartenId());
+		System.out.println(karteikarteForList.getantwortA());
+		System.out.println(karteikarteForList.getantwortB());
+		System.out.println(karteikarteForList.getModulname());
+		System.out.println(karteikarteForList.getbegruendung());
+		System.out.println("Ende!");
+		response.sendRedirect("jsp/ViewTeacher_KarteikarteBearbeiten.jsp");
 	}
 
 }

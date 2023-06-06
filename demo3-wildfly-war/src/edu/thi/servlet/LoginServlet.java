@@ -102,8 +102,8 @@ public class LoginServlet extends HttpServlet {
 				while (rs.next()) {
 					login.setUserid(rs.getString("userid"));
 					login.setEmail(rs.getString("email"));
-					login.setPassword(rs.getString("password"));
-					login.setRole(rs.getString("role"));
+					login.setPassword(rs.getString("passwort"));
+					login.setRole(rs.getString("rolle"));
 				} // while rs.next()
 			}
 		} catch (Exception ex) {

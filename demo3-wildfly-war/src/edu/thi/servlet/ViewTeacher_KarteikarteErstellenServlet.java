@@ -6,10 +6,15 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import edu.thi.bean.ViewTeacher_KarteikarteErstellenBean;
+import edu.thi.bean.ViewTeacher_ModuleBean;
+import edu.thi.bean.ViewTeacher_StudiengaengeBean;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -36,27 +41,49 @@ public class ViewTeacher_KarteikarteErstellenServlet extends HttpServlet {
 		String[] generatedKeys = new String[] {"id"};
 		
 		try(Connection con = ds.getConnection();																																														//Hier wurde das Feld bilddatei ergänzt und ein ?
-				PreparedStatement pstmt = con.prepareStatement("INSERT INTO karteikarte (modulname, studiengangname, userId,fragentext, antwortA, antwortB, antwortC, antwortD, korrekteAntwort, begruendungstext, titel, bilddatei) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)", generatedKeys)) {
-//			pstmt.setString(1, form.getmodulname());
-//			pstmt.setString(2, form.getstudiengangname());
-			pstmt.setInt(3, 2);
-			pstmt.setString(4, form.getfragentext());
-			pstmt.setString(5, form.getantwortA());
-			pstmt.setString(6, form.getantwortB());
-			pstmt.setString(7, form.getantwortC());
-			pstmt.setString(8, form.getantwortD());
-			pstmt.setString(9, form.getkorrekteAntwort());
-			pstmt.setString(10, form.getbegruendung());
-			pstmt.setString(11, form.gettitel());
+				PreparedStatement pstmt = con.prepareStatement("INSERT INTO karteikarte (karteikartenId, modulname, studiengangname, userId,fragentext, antwortA, antwortB, antwortC, antwortD, korrekteAntwort, begruendungstext, titel, bilddatei) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", generatedKeys)) {
+            
+			// Code ab hier bis zum Ende der Markierung generiert durch ChatGPT
+            String query = "SELECT karteikartenId FROM karteikarte";
+            PreparedStatement stmt = con.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            
+            // Array zum Speichern der vorhandenen Primärschlüssel
+            boolean[] taken = new boolean[10000]; // Annahme: Primärschlüssel reichen von 0 bis 9999
+            
+            // Markiere die vorhandenen Primärschlüssel als belegt
+            while (rs.next()) {
+                int id = rs.getInt("karteikartenId");
+                taken[id] = true;
+            }
+            
+            // Suche nach einem unbenutzten Primärschlüssel
+            int availableId = -1;
+            for (int i = 0; i < taken.length; i++) {
+                if (!taken[i]) {
+                    availableId = i;
+                    break;
+                }
+            }
+            // Ende der Markierung
+            
+			pstmt.setInt(1, availableId);
+			pstmt.setString(2, form.getModulname());
+			pstmt.setString(3, form.getStudiengangname());
+			pstmt.setString(4, form.getUserId());
+			pstmt.setString(5, form.getfragentext());
+			pstmt.setString(6, form.getantwortA());
+			pstmt.setString(7, form.getantwortB());
+			pstmt.setString(8, form.getantwortC());
+			pstmt.setString(9, form.getantwortD());
+			pstmt.setString(10, form.getkorrekteAntwort());
+			pstmt.setString(11, form.getbegruendung());
+			pstmt.setString(12, form.gettitel());
 			//Hier muss diese Methode für pstmt ergänzt werden
-			pstmt.setBinaryStream(12, filepart.getInputStream());
+			pstmt.setBinaryStream(13, filepart.getInputStream());
 			pstmt.executeUpdate();
 			
-			try (ResultSet rs = pstmt.getGeneratedKeys()) {
-				while(rs.next()) {
-					form.setkarteikartenId(rs.getInt(1));
-				}
-			}
+			
 			} catch (Exception ex) {
 				throw new ServletException(ex.getMessage());
 			}
@@ -84,8 +111,9 @@ public class ViewTeacher_KarteikarteErstellenServlet extends HttpServlet {
 		form.setkorrekteAntwort(request.getParameter("korrekteAntwort"));
 		form.setbegruendung(request.getParameter("begruendungstext"));
 		form.settitel(request.getParameter("titel"));
-//		form.setmodulname(request.getParameter("modulname"));
-//		form.setstudiengangname(request.getParameter("studiengangname"));
+		form.setModulname(request.getParameter("modulname"));
+		form.setStudiengangname(request.getParameter("studienfachId"));
+		form.setUserId(request.getParameter("userid"));
 		
 		Part filepart = request.getPart("image");
 		
@@ -97,7 +125,7 @@ public class ViewTeacher_KarteikarteErstellenServlet extends HttpServlet {
 				while ((i = in.read()) != -1) {
 					baos.write(i);
 				}
-//				form.setBild(baos.toByteArray());
+				form.setBild(baos.toByteArray());
 				baos.flush();
 		} 
 		catch (IOException ex) 
@@ -107,10 +135,52 @@ public class ViewTeacher_KarteikarteErstellenServlet extends HttpServlet {
 						
 		persist(form, filepart);
 		
-		final HttpSession session = request.getSession();
-		session.setAttribute("form", form);
+		ViewTeacher_StudiengaengeBean studiengang = new ViewTeacher_StudiengaengeBean();
+		studiengang.setStudiengangname(form.getStudiengangname());
+		studiengang.setUserId(form.getUserId());
 		
-		response.sendRedirect("/demo-wildfly-war/ViewTeacher/jsp/KarteikarteErstellen.jsp");
+		ViewTeacher_ModuleBean modul = new ViewTeacher_ModuleBean();
+		modul.setStudiengangname(form.getStudiengangname());
+		modul.setUserId(form.getUserId());
+		modul.setModulname(form.getModulname());
+		
+		List<ViewTeacher_KarteikarteErstellenBean> karteikarten = new ArrayList<>();
+
+		try (Connection con = ds.getConnection();) {
+			String query = "SELECT karteikartenId, titel, fragentext, modulname FROM karteikarte WHERE userId = '" + form.getUserId() + "' AND studiengangname = '" + form.getStudiengangname() + "'"
+					+ " AND modulname = '" + form.getModulname() + "'";
+			PreparedStatement statement = con.prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				String modulnameForList = resultSet.getString("modulname");
+				String fragentextForList = resultSet.getString("fragentext");
+				String titelForList = resultSet.getString("titel");
+				int karteikartenIdForList = resultSet.getInt("karteikartenId");
+				ViewTeacher_KarteikarteErstellenBean karteikarteForList = new ViewTeacher_KarteikarteErstellenBean();
+				karteikarteForList.setModulname(modulnameForList);
+				karteikarteForList.setStudiengangname(form.getStudiengangname());
+				karteikarteForList.setUserId(form.getUserId());
+				karteikarteForList.setfragentext(fragentextForList);
+				karteikarteForList.settitel(titelForList);
+				karteikarteForList.setkarteikartenId(karteikartenIdForList);
+				karteikarten.add(karteikarteForList);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("karteikarten", karteikarten);
+		session.setAttribute("modul", modul);
+		session.setAttribute("studienfachId", studiengang);
+		session.setAttribute("userid", form.getUserId());
+		
+		//final HttpSession session = request.getSession();
+		//session.setAttribute("form", form);
+		
+		response.sendRedirect("jsp/ViewTeacher_Karteikarten.jsp");
 		
 	}
 

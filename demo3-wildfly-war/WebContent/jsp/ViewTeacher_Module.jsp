@@ -19,7 +19,7 @@
 	<div class="decks">
 		<form action="../ViewTeacher_ModuleServlet" method="post">
 			<h1 class="h1">
-				<a href="../jsp/MeineThemen.jsp">Meine Studiengaenge</a>:${studienfachId.studiengangname}
+				<a href="ViewTeacher_Studiengaenge.jsp">Meine Studiengaenge</a>:${studienfachId.studiengangname}
 			</h1>
 			<!--<form action="../ViewTeacher_ModuleServlet" method="post">-->
 			<input type="hidden" name="userid" value="${LoginForm.userid}">
