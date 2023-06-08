@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import edu.thi.bean.RegisterBean;
 import edu.thi.bean.ViewTeacher_StudiengaengeBean;
 import jakarta.annotation.Resource;
-import jakarta.servlet.RequestDispatcher;
+//import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -52,6 +52,7 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");	// In diesem Format erwartet das Servlet jetzt die Formulardaten
 		String userid = request.getParameter("userid");
+		String password = request.getParameter("password");
 		/*List<ViewTeacher_StudiengaengeBean> studienfaecher = getAllStudienfaecher();*/
         List<ViewTeacher_StudiengaengeBean> studienfaecher = new ArrayList<>();
 
@@ -76,16 +77,26 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(login.getUserid());		
 		// Scope "Request"
 		//request.setAttribute("LoginForm", login);
-		
+	
 		// Weiterleiten an JSP
 		//final RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/ViewTeacher_Studiengaenge.jsp");
-		//dispatcher.forward(request, response);	
-		
-		
+		//dispatcher.forward(request, response);
 		HttpSession session = request.getSession();
 		session.setAttribute("studienfaecher", studienfaecher);
 		session.setAttribute("LoginForm", login);
-        response.sendRedirect("jsp/ViewTeacher_Studiengaenge.jsp");
+		System.out.println(password.equals(login.getPassword()));
+		System.out.println(login.getRole().equals("Dozent"));
+		if(password.equals(login.getPassword())) {//Überprüfung der Passwortübereinstimmung
+			if(login.getRole().equalsIgnoreCase("Dozent")) {//Überprüfung der Rolle und Weiterleitung zur jeweiligen Seite
+				response.sendRedirect("jsp/ViewTeacher_Studiengaenge.jsp");
+	         }else if(login.getRole().equalsIgnoreCase("Student")) {
+	        	 response.sendRedirect("jsp/ViewTeacher_Karteikarten.jsp");//Verlinkung zur Studentenstartseite
+	         }   
+		}else {
+			response.getWriter().println("Das angegebene Passwort ist falsch");
+		}
+		
+		
 	}
 	
 	private RegisterBean search(String userid) throws ServletException {

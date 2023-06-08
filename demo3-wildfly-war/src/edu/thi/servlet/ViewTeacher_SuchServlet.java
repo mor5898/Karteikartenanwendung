@@ -30,14 +30,14 @@ public class ViewTeacher_SuchServlet extends HttpServlet implements Servlet {
 	@Resource(lookup="java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
 	
-	List<ViewTeacher_KarteikarteAnzeigeBean> suchen(String schlagwort) throws ServletException
+	List<ViewTeacher_KarteikarteAnzeigeBean> suchen(String schlagwort, String userid) throws ServletException
 	{
 		schlagwort = (schlagwort == null || schlagwort == "") ? "%" : "%" + schlagwort + "%";
 		
 		List<ViewTeacher_KarteikarteAnzeigeBean> karteikarten = new ArrayList<ViewTeacher_KarteikarteAnzeigeBean>();
 		
 		try(Connection con = ds.getConnection();
-			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM karteikarte WHERE titel LIKE ?"))
+			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM karteikarte WHERE titel LIKE ? AND userId = '" + userid + "'"))
 		{
 			pstmt.setString(1,  schlagwort);
 			try(ResultSet rs = pstmt.executeQuery())
@@ -71,7 +71,7 @@ public class ViewTeacher_SuchServlet extends HttpServlet implements Servlet {
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
+		/*request.setCharacterEncoding("UTF-8");
 		
 		String schlagwort = request.getParameter("schlagwort");
 		
@@ -80,7 +80,7 @@ public class ViewTeacher_SuchServlet extends HttpServlet implements Servlet {
 		request.setAttribute("karteikarten", karteikarten);
 		
 		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/ViewTeacher_suchergebnis.jsp");
-		dispatcher.forward(request, response);
+		dispatcher.forward(request, response);*/
 	}
 
 	/**
@@ -88,7 +88,18 @@ public class ViewTeacher_SuchServlet extends HttpServlet implements Servlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		
+		String schlagwort = request.getParameter("schlagwort");
+		String userid = request.getParameter("userid");
+		
+		List<ViewTeacher_KarteikarteAnzeigeBean> karteikarten = suchen(schlagwort, userid);
+		
+		request.setAttribute("karteikarten", karteikarten);
+		
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/ViewTeacher_suchergebnis.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

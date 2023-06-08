@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.sql.DataSource;
 
@@ -54,14 +56,54 @@ public class RegisterServlet extends HttpServlet {
 		form.setUserid(request.getParameter("userid"));
 		form.setRole(request.getParameter("role"));
 		
-		if(form.getPassword()==form.getPassword2()) {
-		persist(form);
-		}else {
-			persist(form);
-		}
-		final HttpSession session = request.getSession();
-		session.setAttribute("RegisterForm", form);
-		response.sendRedirect("jsp/Register.jsp");
+		// Regexerstellung zur Überprüfung von Passwortbedingungen
+		String password = form.getPassword();
+	    String uppercaseRegex = "^.*[A-Z]+.*$";
+	    Pattern Uppercasepattern = Pattern.compile(uppercaseRegex);
+	    Matcher Uppercasematcher = Uppercasepattern.matcher(password);
+	    String lowercaseRegex = "^.*[a-z]+.*$";
+	    Pattern Lowercasepattern = Pattern.compile(lowercaseRegex);
+	    Matcher Lowercasematcher = Lowercasepattern.matcher(password);
+	    String digitRegex = "^.*[0-9]+.*$";
+	    Pattern Digitpattern = Pattern.compile(digitRegex);
+	    Matcher Digitmatcher = Digitpattern.matcher(password);
+	    String specialCharRegex = "^.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]+.*$";
+	    Pattern SpecialCharpattern = Pattern.compile(specialCharRegex);
+	    Matcher SpecialCharmatcher = SpecialCharpattern.matcher(password);
+	    
+
+	    // Überprüfung der Passwortbedingungen
+	    boolean isValid = true;
+	     if(!form.getPassword().equals(form.getPassword2())) {
+	    	 isValid = false;
+	    	 response.getWriter().println("Die Passwörter müssen übereinstimmen.");
+	     }
+	     if(form.getPassword().length()<6) {
+	    	 isValid = false;
+	    	 response.getWriter().println("Das Passwort muss aus mindestens 6 Stellen bestehen.");
+	     }
+	     if (!Uppercasematcher.matches()) {
+	    	 isValid = false;
+	         response.getWriter().println("Das Passwort muss mindestens einen Großbuchstaben enthalten.");
+	     }
+	     if (!Lowercasematcher.matches()) {
+	         isValid = false;
+	         response.getWriter().println("Das Passwort muss mindestens einen Kleinbuchstaben enthalten.");
+	     }
+	     if (!Digitmatcher.matches()) {
+	         isValid = false;
+	         response.getWriter().println("Das Passwort muss mindestens eine Ziffer enthalten.");
+	     }
+	     if (!SpecialCharmatcher.matches()) {
+	         isValid = false;
+	         response.getWriter().println("Das Passwort muss mindestens ein Sonderzeichen enthalten.");
+	     }
+	     if (isValid) {
+	    	 persist(form);
+	         final HttpSession session = request.getSession();
+	         session.setAttribute("RegisterForm", form);
+	         response.sendRedirect("jsp/Register.jsp");
+	     }
 	}
 	
 	private void persist(RegisterBean form) throws ServletException {
@@ -69,7 +111,7 @@ public class RegisterServlet extends HttpServlet {
 		
 		try (Connection con = ds.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(
-					"INSERT INTO user (userid,password,email,role) VALUES (?,?,?,?)", 
+					"INSERT INTO user (userid,passwort,email,rolle) VALUES (?,?,?,?)", 
 					generatedKeys)){
 
 			pstmt.setString(1, form.getUserid());

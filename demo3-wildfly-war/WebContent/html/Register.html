@@ -12,21 +12,21 @@
 	</form>
 	<form class="login" method="post" action="../RegisterServlet">
 		<label for="userid">Benutzername:</label><br>
-		<input type="text" id="userid" name="userid" required><br>
+		<input type="text" id="userid" name="userid" required maxlength="20"><br>
 		<label for="email">Email:</label><br>
-		<input type="email" id="email" name="email" required><br>
+		<input type="email" id="email" name="email" required maxlength="25"><br>
 		<label for="password">Passwort:</label><br>
-		<input type="password" id="password" name="password" required><br><br>
+		<input type="password" id="password" name="password" required maxlength="20"><br><br>
 		<label for="passwortWiederholen">Passwort wiederholen:</label><br>
-		<input type="password" id="password2" name="password2" required><br><br>	
+		<input type="password" id="password2" name="password2" required maxlength="20"><br><br>	
 		<label for="role">Rolle:</label>
   		<select name="role" id="role">
-    		<option value="dozent">Dozent</option>
+    		<option value="Dozent">Dozent</option>
     		<option value="Student">Student</option>
    		 </select>
   		<br><br>
     	<input type="submit" value="Registrieren"><br>
-    	<label><a href="../index.html">Zurück zur Anmeldung</a></label>
+    	<label><a href="../index.html">ZurÃ¼ck zur Anmeldung</a></label>
 	</form>
 </body>
 </html>

@@ -22,19 +22,18 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Erstellt durch: Moritz Reindl
+ * Servlet implementation class ViewTeacher_KarteikartenLoeschenServlet
  */
-@WebServlet("/ViewTeacher_KarteikartenServlet")
-public class ViewTeacher_KarteikartenServlet extends HttpServlet {
+@WebServlet("/ViewTeacher_KarteikartenLoeschenServlet")
+public class ViewTeacher_KarteikartenLoeschenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Resource(lookup = "java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
-
     /**
      * Default constructor. 
      */
-    public ViewTeacher_KarteikartenServlet() {
+    public ViewTeacher_KarteikartenLoeschenServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -50,12 +49,10 @@ public class ViewTeacher_KarteikartenServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		
+		String modulname = request.getParameter("modulname");
 		String studiengangname = request.getParameter("studienfachId");
 		String userId = request.getParameter("userid");
-		String modulname = request.getParameter("modulname");
-		System.out.println("Studiengang: " + studiengangname + " userId: " + userId + " modulname: " + modulname);
-		
 		ViewTeacher_StudiengaengeBean studiengang = new ViewTeacher_StudiengaengeBean();
 		studiengang.setStudiengangname(studiengangname);
 		studiengang.setUserId(userId);
@@ -64,7 +61,25 @@ public class ViewTeacher_KarteikartenServlet extends HttpServlet {
 		modul.setStudiengangname(studiengangname);
 		modul.setUserId(userId);
 		modul.setModulname(modulname);
+		// Code bis zur Markierung generiert durch ChatGPT
+		String[] selectedKarteikartenIds = request.getParameterValues("selectedKarteikarten");
 		
+        // Datenbankverbindung aufbauen und Einträge löschen
+        try (Connection con = ds.getConnection();) {
+            String sql = "DELETE FROM karteikarte WHERE karteikartenId = ?";
+            PreparedStatement statement = con.prepareStatement(sql);
+            
+            // Für jede ausgewählte Id das Prepared Statement ausführen
+            for (String karteikartenId : selectedKarteikartenIds) {
+                statement.setString(1, karteikartenId);
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Hier können Sie geeignete Fehlerbehandlung durchführen
+        }
+        // Markierung!
+        
 		List<ViewTeacher_KarteikarteErstellenBean> karteikarten = new ArrayList<>();
 
 		try (Connection con = ds.getConnection();) {

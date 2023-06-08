@@ -17,8 +17,9 @@
 	</div>
 	<div class="decks">
 		<h1 class="h1">
-			<a href="MeineThemen.html">Meine Themen</a>: <a
-				href="MeineThemen.html">Wirtschaftsinformatik</a>: Datenbanksysteme
+			<a href="ViewTeacher_Studiengaenge.jsp">Meine Studiengaenge</a>: <a
+				href="ViewTeacher_Module.jsp">${karteikarte.studiengangname}</a>:
+			${karteikarte.modulname}
 		</h1>
 	</div>
 	<form method="post" action="../ViewTeacher_KarteikarteErstellenServlet" enctype="multipart/form-data">
@@ -56,12 +57,11 @@
 		<div class="grid-item">Begruendung der Antwort:</div>
 		<input type="text" id="begruendungstext" name="begruendungstext">
 		<div class="button">
-	
 	</div>
 	</div>
 	</form>
 	<form action ="Profil.html">
-	<input type="submit" value="Abbrechen" class="buttonCancel">
+	<button type="submit" value="zur&#252;ck" class="buttonCancel"><a href="ViewTeacher_Karteikarten.jsp">Abbrechen</a></button>	
 	</form>
 </body>
 </html>

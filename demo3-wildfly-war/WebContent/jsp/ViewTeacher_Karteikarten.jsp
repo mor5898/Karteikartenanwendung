@@ -10,10 +10,10 @@
 </head>
 <body>
 
-	<div class="sidebar">
-		<a href="#profil">Profil</a> <a class="active" href="#decks">Meine
-			Decks</a> <a href="#suchen">Suchen</a>
-	</div>
+<!--	<div class="sidebar">-->
+<!--		<a href="#profil">Profil</a> <a class="active" href="#decks">Meine-->
+<!--			Decks</a> <a href="#suchen">Suchen</a>-->
+<!--	</div>-->
 
 	<div class="decks">
 		<h1 class="h1">
@@ -31,9 +31,45 @@
 			<button type="submit" class="buttonAdd">Frage
 				hinzuf&#252;gen</button>
 		</form>
-		<input type="submit" value="zur&#252;ck" class="buttonBack"> <input
-			type="submit" value="speichern" class="buttonSave"> <input
-			type="submit" value="Deck ver&#246;ffentlichen" class="buttonPublish">
+		<button type="submit" value="zur&#252;ck" class="buttonBack">
+			<a href="ViewTeacher_Module.jsp">zur&#252;ck</a>
+		</button>
+
+<!-- Bis zur Markierung erstellt durch ChatGPT-->
+		<button onclick="openPopup()" >Karteikarte
+				l&#246;schen</button>
+
+		<div id="popup" class="popup">
+			<h2>Titel auswählen</h2>
+			<form action="../ViewTeacher_KarteikartenLoeschenServlet" method="post">
+			<ul id="karteikartenListe">
+				<c:forEach items="${karteikarten}" var="karteikarte">
+				<!-- Nachfolgende Zeilen erstellt durch Moritz Reindl -->
+				<input type="hidden" name="modulname" value="${karteikarte.modulname}">
+				<input type="hidden" name="userid" value="${karteikarte.userId}">
+				<input type="hidden" name="studienfachId" value="${karteikarte.studiengangname}">
+					<li><input type="checkbox" name="selectedKarteikarten" value="${karteikarte.karteikartenId}"> <c:out value="${karteikarte.titel}" /></li>
+				</c:forEach>
+			</ul>
+				<button type="submit">Löschen</button>
+			<button onclick="closePopup()">Abbrechen</button>
+			</form>
+		</div>
+
+		<script>
+			// JavaScript-Code zum Anzeigen und Verwalten des Pop-up-Fensters
+			function openPopup() {
+				var popup = document.getElementById("popup");
+				popup.style.display = "block";
+			}
+
+			function closePopup() {
+				var popup = document.getElementById("popup");
+				popup.style.display = "none";
+			}
+		</script>
+<!-- Markierung! -->
+
 	</div>
 	<form method="post"
 		action="../ViewTeacher_KarteikarteBearbeitenServlet">

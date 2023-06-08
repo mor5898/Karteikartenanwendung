@@ -11,10 +11,10 @@
 </head>
 <body>
 
-	<div class="sidebar">
-		<a href="#profil">Profil</a> <a class="active" href="#decks">Meine
-			Decks</a> <a href="#suchen">Suchen</a>
-	</div>
+<!--	<div class="sidebar">-->
+<!--		<a href="#profil">Profil</a> <a class="active" href="#decks">Meine-->
+<!--			Decks</a> <a href="#suchen">Suchen</a>-->
+<!--	</div>-->
 
 	<div class="decks">
 		<form action="../ViewTeacher_ModuleServlet" method="post">
@@ -48,7 +48,40 @@
 				}
 			</script>
 		</form>
-		<input type="submit" value="zur&#252;ck" class="buttonBack">
+<!-- Bis zur Markierung erstellt durch ChatGPT-->
+		<button onclick="openPopup()" >Modul
+				l&#246;schen</button>
+
+		<div id="popup" class="popup">
+			<h2>Titel auswählen</h2>
+			<form action="../ViewTeacher_ModuleLoeschenServlet" method="post">
+			<ul id="moduleListe">
+				<c:forEach items="${module}" var="modul">
+				<!-- Nachfolgende Zeilen erstellt durch Moritz Reindl -->
+				<input type="hidden" name="userid" value="${modul.userId}">
+				<input type="hidden" name="studienfachId" value="${modul.studiengangname}">
+					<li><input type="checkbox" name="selectedModule" value="${modul.modulname}"> <c:out value="${modul.modulname}" /></li>
+				</c:forEach>
+			</ul>
+				<button type="submit">Löschen</button>
+			<button onclick="closePopup()">Abbrechen</button>
+			</form>
+		</div>
+
+		<script>
+			// JavaScript-Code zum Anzeigen und Verwalten des Pop-up-Fensters
+			function openPopup() {
+				var popup = document.getElementById("popup");
+				popup.style.display = "block";
+			}
+
+			function closePopup() {
+				var popup = document.getElementById("popup");
+				popup.style.display = "none";
+			}
+		</script>
+<!-- Markierung! -->
+		<button type="submit" value="zur&#252;ck" class="buttonBack"><a href="ViewTeacher_Studiengaenge.jsp">zur&#252;ck</a></button>
 	</div>
 	<form method="post" action="../ViewTeacher_KarteikartenServlet">
 		<input type="hidden" name="userid" value="${LoginForm.userid}">
@@ -66,6 +99,8 @@
 			</table>
 		</div>
 	</form>
+	<p>Modulname können nur einmal angelegt werden. Bei erneutem Anlegen eines bereits existierenden Modulname, wird kein neues
+	Modul angelegt!</p>
 </body>
 </html>
 
