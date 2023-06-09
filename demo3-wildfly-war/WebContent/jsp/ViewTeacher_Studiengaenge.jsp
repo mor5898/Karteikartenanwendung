@@ -11,6 +11,7 @@
 <title>Meine Studiengaenge</title>
 </head>
 <body>
+<script src="../javascript/ViewTeacher_Studiengaenge.js"> </script>
 
 <!--	<div class="sidebar">-->
 <!--		<a href="#profil">Profil</a> <a class="active" href="#decks">Meine-->
@@ -19,7 +20,6 @@
 
 	<div class="decks">
 		<h1 class="h1">Meine Studieng&#228;nge</h1>
-		<input type="submit" value="Thema hinzuf&#252;gen" class="button">
 	</div>
 	<!-- Quelle: ab hier bis einschließlich Funktion saveStudiengang generiert durch ChatGPT -->
 	<button onclick="showPopup()" class="buttonAdd">Studiengang
@@ -28,9 +28,10 @@
 		<button onclick="openPopup()" >Studiengang
 				l&#246;schen</button>
 
-		<div id="popup" class="popup">
-			<h2>Titel auswählen</h2>
+		<div id="popupDelete" class="popup">
+			<h2>Studiengang auswählen</h2>
 			<form action="../ViewTeacher_StudiengaengeLoeschenServlet" method="post">
+			<input type="hidden" name="userid" value="${LoginForm.userid}">
 			<ul id="studiengaengeListe">
 				<c:forEach items="${studienfaecher}" var="studiengang">
 				<!-- Nachfolgende Zeilen erstellt durch Moritz Reindl -->
@@ -39,26 +40,13 @@
 				</c:forEach>
 			</ul>
 				<button type="submit">Löschen</button>
-			<button onclick="closePopup()">Abbrechen</button>
 			</form>
+			<button onclick="closePopup()">Abbrechen</button>
 		</div>
-
-		<script>
-			// JavaScript-Code zum Anzeigen und Verwalten des Pop-up-Fensters
-			function openPopup() {
-				var popup = document.getElementById("popup");
-				popup.style.display = "block";
-			}
-
-			function closePopup() {
-				var popup = document.getElementById("popup");
-				popup.style.display = "none";
-			}
-		</script>
 <!-- Markierung! -->
 	<form method="post" action="../ViewTeacher_SuchenHiddenServlet">
 		<input type="hidden" name="userid" value="${LoginForm.userid}">
-	<button type="submit" class="buttonSearch">Karteikarten durchsuchen</button>
+	<button type="submit" class="buttonSearch">Meine gesamten Karteikarten durchsuchen</button>
 	</form>
 	<form method="post" action="../ViewTeacher_StudiengaengeServlet">
 		<input type="hidden" name="userid" value="${LoginForm.userid}">
@@ -66,22 +54,9 @@
 			<label for="studiengang">Studiengang:</label> <input type="text"
 				name="studiengang" id="studiengang" required />
 			<button onclick="saveStudiengang()">Speichern</button>
+			<button onclick="closePopupAdd()">Abbrechen</button>
 		</div>
 
-		<script>
-			function showPopup() {
-				var popup = document.getElementById('popup');
-				popup.style.display = 'block';
-			}
-
-			function saveStudiengang() {
-				var studiengangInput = document.getElementById('studiengang');
-				var studiengang = studiengangInput.value;
-				alert('Studiengang gespeichert: ' + studiengang);
-				var popup = document.getElementById('popup');
-				popup.style.display = 'none';
-			}
-		</script>
 	</form>
 	<form method="get" action="../ViewTeacher_ModuleServlet">
 	<input type="hidden" name="userid" value="${LoginForm.userid}">
@@ -100,7 +75,3 @@
 	Studiengang angelegt!</p>
 </body>
 </html>
-
-
-
-<!-- <a href="ViewTeacher_Module.jsp?studienfachId=${studiengang.studiengangname}"> ChatGPT -->

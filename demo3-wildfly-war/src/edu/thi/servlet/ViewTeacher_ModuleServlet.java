@@ -138,8 +138,6 @@ public class ViewTeacher_ModuleServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		System.out.println(module.get(0).toString());
-
 		request.setAttribute("module", module);
 		request.setAttribute("studienfachId", studiengang);
 		request.setAttribute("userid", userId);

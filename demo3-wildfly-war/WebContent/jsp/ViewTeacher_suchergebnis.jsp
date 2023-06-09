@@ -20,6 +20,9 @@ table, th, td {
 <body>
 	<h2>Suche war erfolgreich</h2>
 	<h3>Gelesene Daten</h3>
+	<button type="submit" value="zur&#252;ck">
+		<a href="ViewTeacher_Suchen.jsp">zur&#252;ck</a>
+	</button>
 	<form method="post"
 		action="../ViewTeacher_KarteikarteBearbeitenServlet">
 		<div>
@@ -31,18 +34,24 @@ table, th, td {
 					<th>Titel</th>
 				</tr>
 				<c:forEach var="currentKarteikarte" items="${ karteikarten }">
-					<input type="hidden" name="userid" value="${currentKarteikarte.userid}">
-					<input type="hidden" name="studienfachId" value="${currentKarteikarte.studiengangname}"> 
-					<input type="hidden" name="modulname" value="${currentKarteikarte.modulname}">
-					<input type="hidden" name="karteikartenId" value="${currentKarteikarte.karteikartenId}">
-					<input type="hidden" name="fragentext" value="${currentKarteikarte.fragentext}">
+					<input type="hidden" name="userid"
+						value="${currentKarteikarte.userId}">
+					<input type="hidden" name="studienfachId"
+						value="${currentKarteikarte.studiengang}">
+					<input type="hidden" name="modulname"
+						value="${currentKarteikarte.modul}">
+					<input type="hidden" name="karteikartenId"
+						value="${currentKarteikarte.karteikarteID}">
+					<input type="hidden" name="fragentext"
+						value="${currentKarteikarte.fragentext}">
 					<tr>
 						<td>${currentKarteikarte.studiengang}</td>
 						<td>${currentKarteikarte.modul}</td>
 						<td>${currentKarteikarte.karteikarteID}</td>
 						<td>${currentKarteikarte.titel}</td>
 						<td><button type="submit" name="titel" id="karteikarte.titel"
-								value="${currentKarteikarte.titel}" />Anzeigen</button></td>
+								value="${currentKarteikarte.titel}" />Anzeigen
+							</button></td>
 					</tr>
 				</c:forEach>
 			</table>

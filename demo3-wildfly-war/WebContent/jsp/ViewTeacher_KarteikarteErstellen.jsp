@@ -28,9 +28,9 @@
 	<input type="hidden" name="modulname" value="${karteikarte.modulname}">
 	<div class="answer">
 		<div class="grid-item">Titel:</div>
-		<input type="text" id="titel" name="titel">
+		<input type="text" id="titel" name="titel" required>
 		<div class="grid-item">Frage:</div>
-		<input type="text" id="fragentext" name="fragentext">
+		<input type="text" id="fragentext" name="fragentext" required>
 		<div class="grid-item">Bilddatei (optional):</div>
 		
 	<button type="submit" name="submit">speichern</button>
@@ -39,23 +39,23 @@
 		<div class="grid-item">Antwortm&#246;glichkeiten:</div>
 		<div class="answerOptions">
 			<div class="grid-item">Antwort A:</div>
-			<input type="text" id="antwortA" name="antwortA">
+			<input type="text" id="antwortA" name="antwortA" required>
 			<div class="grid-item">Antwort B:</div>
-			<input type="text" id="antwortB" name="antwortB">
+			<input type="text" id="antwortB" name="antwortB" required>
 			<div class="grid-item">Antwort C:</div>
-			<input type="text" id="antwortC" name="antwortC">
+			<input type="text" id="antwortC" name="antwortC" required>
 			<div class="grid-item">Antwort D:</div>
-			<input type="text" id="antwortD" name="antwortD">
+			<input type="text" id="antwortD" name="antwortD" required>
 		</div>
 		<div class="grid-item">Korrekte Antwort:</div>
-			<select name="korrekteAntwort" id="korrekteAntwort">
+			<select name="korrekteAntwort" id="korrekteAntwort" required>
 				<option value="a">Antwort A</option>
 				<option value="b">Anwort B</option>
 				<option value="c">Anwort C</option>
 				<option value="d">Anwort D</option>
 			</select>
 		<div class="grid-item">Begruendung der Antwort:</div>
-		<input type="text" id="begruendungstext" name="begruendungstext">
+		<input type="text" id="begruendungstext" name="begruendungstext" required>
 		<div class="button">
 	</div>
 	</div>

@@ -11,17 +11,15 @@
 	<link rel="stylesheet" href="../css/Sidebar.css">
 	</head>
 	<body>
-		<div class="sidebar">
-		  <a href="#profil">Profil</a>
-		  <a href="#decks">Meine Decks</a>
-		  <a class="active" href="#suchen">Suchen</a>
-		</div>
+		<button type="submit" value="zur&#252;ck" >
+			<a href="ViewTeacher_Studiengaenge.jsp">zur&#252;ck</a>
+		</button>
 		<h1 class="h1">Suchen</h1>
 		<div class="search">
 			<form action="../ViewTeacher_SuchServlet" method="post" >
 				<input type="hidden" name="userid" value="${user.userid}">
 				<fieldset><legend>Decks suchen</legend>
-					<div class="grid-item">Schlagwort:</div>
+					<div class="grid-item">Titel der Karteikarte:</div>
 					  	<input type="text" id="schlagwort" name="schlagwort" placeholder="Hier SchlagwÃ¶rter eingeben"> 
 					<div class="grid-item">
 						<button name="submit" type="submit">Suche starten</button>

@@ -100,7 +100,6 @@ public class ViewTeacher_ModuleLoeschenServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		System.out.println(module.get(0).toString());
 
 		request.setAttribute("module", module);
 		request.setAttribute("studienfachId", studiengang);

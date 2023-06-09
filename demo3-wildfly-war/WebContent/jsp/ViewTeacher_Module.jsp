@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../css/Sidebar.css">
 </head>
 <body>
-
+<script src="../javascript/ViewTeacher_Studiengaenge.js"> </script>
 <!--	<div class="sidebar">-->
 <!--		<a href="#profil">Profil</a> <a class="active" href="#decks">Meine-->
 <!--			Decks</a> <a href="#suchen">Suchen</a>-->
@@ -31,29 +31,15 @@
 				<label for="modul">Modultitel:</label> <input type="text"
 					name="modul" id="modul" required />
 				<button onclick="saveModul()">Speichern</button>
+				<button onclick="closePopupAdd()">Abbrechen</button>
 			</div>
-
-			<script>
-				function showPopup() {
-					var popup = document.getElementById('popup');
-					popup.style.display = 'block';
-				}
-
-				function saveModul() {
-					var modulInput = document.getElementById('modul');
-					var modul = modulInput.value;
-					alert('Modul gespeichert: ' + modul);
-					var popup = document.getElementById('popup');
-					popup.style.display = 'none';
-				}
-			</script>
 		</form>
 <!-- Bis zur Markierung erstellt durch ChatGPT-->
 		<button onclick="openPopup()" >Modul
 				l&#246;schen</button>
 
-		<div id="popup" class="popup">
-			<h2>Titel auswählen</h2>
+		<div id="popupDelete" class="popup">
+			<h2>Modul auswählen</h2>
 			<form action="../ViewTeacher_ModuleLoeschenServlet" method="post">
 			<ul id="moduleListe">
 				<c:forEach items="${module}" var="modul">
@@ -64,22 +50,11 @@
 				</c:forEach>
 			</ul>
 				<button type="submit">Löschen</button>
-			<button onclick="closePopup()">Abbrechen</button>
 			</form>
+			<button onclick="closePopup()">Abbrechen</button>
 		</div>
 
-		<script>
-			// JavaScript-Code zum Anzeigen und Verwalten des Pop-up-Fensters
-			function openPopup() {
-				var popup = document.getElementById("popup");
-				popup.style.display = "block";
-			}
 
-			function closePopup() {
-				var popup = document.getElementById("popup");
-				popup.style.display = "none";
-			}
-		</script>
 <!-- Markierung! -->
 		<button type="submit" value="zur&#252;ck" class="buttonBack"><a href="ViewTeacher_Studiengaenge.jsp">zur&#252;ck</a></button>
 	</div>

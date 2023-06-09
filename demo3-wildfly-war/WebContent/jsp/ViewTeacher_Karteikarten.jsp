@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="../css/Sidebar.css">
 </head>
 <body>
-
+<script src="../javascript/ViewTeacher_Karteikarten.js"> </script>
 <!--	<div class="sidebar">-->
 <!--		<a href="#profil">Profil</a> <a class="active" href="#decks">Meine-->
 <!--			Decks</a> <a href="#suchen">Suchen</a>-->
@@ -31,10 +31,15 @@
 			<button type="submit" class="buttonAdd">Frage
 				hinzuf&#252;gen</button>
 		</form>
+		<form method="get"
+			action="../ViewTeacher_ModuleServlet">
+				<input type="hidden" name="userid" value="${LoginForm.userid}">
+			<input type="hidden" name="studienfachId"
+				value="${studienfachId.studiengangname}"> 
 		<button type="submit" value="zur&#252;ck" class="buttonBack">
-			<a href="ViewTeacher_Module.jsp">zur&#252;ck</a>
+			zur&#252;ck
 		</button>
-
+		</form>
 <!-- Bis zur Markierung erstellt durch ChatGPT-->
 		<button onclick="openPopup()" >Karteikarte
 				l&#246;schen</button>
@@ -52,22 +57,9 @@
 				</c:forEach>
 			</ul>
 				<button type="submit">Löschen</button>
-			<button onclick="closePopup()">Abbrechen</button>
 			</form>
+			<button onclick="closePopup()">Abbrechen</button>
 		</div>
-
-		<script>
-			// JavaScript-Code zum Anzeigen und Verwalten des Pop-up-Fensters
-			function openPopup() {
-				var popup = document.getElementById("popup");
-				popup.style.display = "block";
-			}
-
-			function closePopup() {
-				var popup = document.getElementById("popup");
-				popup.style.display = "none";
-			}
-		</script>
 <!-- Markierung! -->
 
 	</div>

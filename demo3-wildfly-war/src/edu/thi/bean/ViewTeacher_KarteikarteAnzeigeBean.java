@@ -7,7 +7,21 @@ public class ViewTeacher_KarteikarteAnzeigeBean implements Serializable
 	private String modul;
 	private int karteikarteID;
 	private String titel;
+	private String userId;
+	private String fragentext;
 	
+	public String getFragentext() {
+		return fragentext;
+	}
+	public void setFragentext(String fragentext) {
+		this.fragentext = fragentext;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getStudiengang() {
 		return studiengang;
 	}

@@ -23,7 +23,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class SuchServlet
  */
-@WebServlet("/SuchServlet")
+@WebServlet("/ViewTeacher_SuchServlet")
 public class ViewTeacher_SuchServlet extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
 
@@ -52,12 +52,15 @@ public class ViewTeacher_SuchServlet extends HttpServlet implements Servlet {
 					String modul = rs.getString("modulname");
 					karteikarte.setModul(modul);
 					
+					String fragentext = rs.getString("fragentext");
+					karteikarte.setFragentext(fragentext);
+					
 					int karteikarteID = rs.getInt("karteikartenId");
 					karteikarte.setKarteikarteID(karteikarteID);
 					
 					String titel = rs.getString("titel");
 					karteikarte.setTitel(titel);
-					
+					karteikarte.setUserId(userid);
 					karteikarten.add(karteikarte);
 				}
 			}

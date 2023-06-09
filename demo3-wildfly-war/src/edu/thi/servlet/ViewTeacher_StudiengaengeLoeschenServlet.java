@@ -56,6 +56,8 @@ public class ViewTeacher_StudiengaengeLoeschenServlet extends HttpServlet {
 		// Code bis zur Markierung generiert durch ChatGPT
 		String[] selectedStudiengaenge = request.getParameterValues("selectedStudiengaenge");
 		
+		System.out.println(selectedStudiengaenge.length);
+		System.out.println("userId: " + userId);
         // Datenbankverbindung aufbauen und Einträge löschen
         try (Connection con = ds.getConnection();) {
             String sql = "DELETE FROM studiengang WHERE studiengangname = ? AND userId = '" + userId + "'";
@@ -78,7 +80,7 @@ public class ViewTeacher_StudiengaengeLoeschenServlet extends HttpServlet {
 			String query = "SELECT studiengangname FROM studiengang WHERE userId = '" + userId + "'";
 			PreparedStatement statement = con.prepareStatement(query);
 			ResultSet resultSet = statement.executeQuery();
-
+		
 			while (resultSet.next()) {
 				String studienfachId = resultSet.getString("studiengangname");
 				ViewTeacher_StudiengaengeBean studiengang = new ViewTeacher_StudiengaengeBean();
@@ -91,13 +93,13 @@ public class ViewTeacher_StudiengaengeLoeschenServlet extends HttpServlet {
 		request.setAttribute("studienfaecher", studienfaecher);
 		// request.getRequestDispatcher("ViewTeacher/jsp/MeineThemen.jsp").forward(request,
 		// response);
-		if (studienfaecher.isEmpty()) {
-			response.getWriter().println("Fehler beim Speichern des Studienfachs.");
-		} else {
+	//	if (studienfaecher.isEmpty()) {
+	//		response.getWriter().println("Fehler beim Speichern des Studienfachs.");
+	//	} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("studienfaecher", studienfaecher);
 			response.sendRedirect("jsp/ViewTeacher_Studiengaenge.jsp");
-		}
+	//	}
 	}
 
 }
