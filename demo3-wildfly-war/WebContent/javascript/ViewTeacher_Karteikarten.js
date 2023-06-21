@@ -1,6 +1,7 @@
 /**
  * generiert durch ChatGPT
  */
+"use strict";
 // JavaScript-Code zum Anzeigen und Verwalten des Pop-up-Fensters
 function openPopup() {
 	var popup = document.getElementById("popup");

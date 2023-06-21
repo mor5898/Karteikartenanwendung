@@ -72,5 +72,6 @@
 	<form action="Profil.html">
 		<input type="submit" value="Abbrechen" class="buttonCancel">
 	</form>
+	<p>Eingeloggt: ${karteikarte.userId}</p>
 </body>
 </html>

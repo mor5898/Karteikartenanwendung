@@ -87,5 +87,6 @@
 			</table>
 		</div>
 	</form>
+	<p>Eingeloggt: ${LoginForm.userid}</p>
 </body>
 </html>

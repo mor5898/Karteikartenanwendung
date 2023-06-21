@@ -1,7 +1,7 @@
 /**
  *  generiert durch ChatGPT
  */
-
+"use strict";
 function openPopup() {
 	var popup = document.getElementById("popupDelete");
 	popup.style.display = "block";

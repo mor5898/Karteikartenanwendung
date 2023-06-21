@@ -28,5 +28,6 @@
 				</fieldset>
 			</form>
 		</div>
+		<p>Eingeloggt: ${user.userid}</p>
 	</body>
 </html>

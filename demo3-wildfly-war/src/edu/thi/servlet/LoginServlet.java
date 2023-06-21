@@ -11,6 +11,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import edu.thi.bean.RegisterBean;
+import edu.thi.bean.ViewTeacher_ModuleBean;
 import edu.thi.bean.ViewTeacher_StudiengaengeBean;
 import jakarta.annotation.Resource;
 //import jakarta.servlet.RequestDispatcher;
@@ -48,6 +49,43 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	List<ViewTeacher_ModuleBean> suchen(String id) throws ServletException
+	{
+		
+		List<ViewTeacher_ModuleBean> modul = new ArrayList<ViewTeacher_ModuleBean>();
+		
+		try(Connection con = ds.getConnection();
+			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM modulprostudent WHERE student_id LIKE ?"))
+		{
+			pstmt.setString(1, id);
+			try(ResultSet rs = pstmt.executeQuery())
+			{
+				
+				while(rs.next())
+				{
+					ViewTeacher_ModuleBean module = new ViewTeacher_ModuleBean();
+					
+					String userId = rs.getString("dozent_id");
+					module.setUserId(userId);
+
+					String studiengang = rs.getString("studiengangname");
+					module.setStudiengangname(studiengang);;
+					
+					String modulname = rs.getString("modulname");
+					module.setModulname(modulname);
+										
+					modul.add(module);
+				}
+			}
+		}
+		catch (Exception ex)
+		{
+			throw new ServletException(ex.getMessage());
+		}
+		
+		return modul;
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");	// In diesem Format erwartet das Servlet jetzt die Formulardaten
@@ -76,7 +114,7 @@ public class LoginServlet extends HttpServlet {
 		RegisterBean login = search(userid);
 		System.out.println(login.getUserid());		
 		// Scope "Request"
-		//request.setAttribute("LoginForm", login);
+		request.setAttribute("LoginForm", login);
 	
 		// Weiterleiten an JSP
 		//final RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/ViewTeacher_Studiengaenge.jsp");
@@ -90,12 +128,20 @@ public class LoginServlet extends HttpServlet {
 			if(login.getRole().equalsIgnoreCase("Dozent")) {//Überprüfung der Rolle und Weiterleitung zur jeweiligen Seite
 				response.sendRedirect("jsp/ViewTeacher_Studiengaenge.jsp");
 	         }else if(login.getRole().equalsIgnoreCase("Student")) {
-	        	 response.sendRedirect("jsp/ViewTeacher_Karteikarten.jsp");//Verlinkung zur Studentenstartseite
+	        	 
+	        	 
+	     		//String userId = request.getParameter("id");
+	     		List<ViewTeacher_ModuleBean> module = suchen(userid);
+	     		//request.setAttribute("id", userId);
+	     		session.setAttribute("modules", module);
+	        	 
+	        	 response.sendRedirect("jsp/View_StudentHome.jsp");//Verlinkung zur Studentenstartseite
+	        	 
 	         }   
 		}else {
 			response.getWriter().println("Das angegebene Passwort ist falsch");
 		}
-		
+		 System.out.println("Ende");
 		
 	}
 	

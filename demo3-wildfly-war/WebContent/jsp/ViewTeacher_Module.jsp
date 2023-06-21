@@ -7,7 +7,7 @@
 <!-- Dieses Dokument wurde erstellt durch Moritz Reindl -->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../css/Sidebar.css">
+<link rel="stylesheet" href="../css/ViewTeacher_ModuleCSS.css">
 </head>
 <body>
 <script src="../javascript/ViewTeacher_Studiengaenge.js"> </script>
@@ -76,6 +76,7 @@
 	</form>
 	<p>Modulname können nur einmal angelegt werden. Bei erneutem Anlegen eines bereits existierenden Modulname, wird kein neues
 	Modul angelegt!</p>
+	<p>Eingeloggt: ${LoginForm.userid}</p>
 </body>
 </html>
 
