@@ -1,76 +1,36 @@
-/**
- * Datei generiert durch ChatGPT
- */
 "use strict";
-/*
-function showPopup() {
-	var popup = document.getElementById('popup');
-	popup.style.display = 'block';
+
+document.addEventListener("DOMContentLoaded", init);
+
+function init() {
+  var buttonAddStudie = document.getElementById('buttonAddStudie');
+  var buttonDelete = document.getElementById('buttonDelete');
+  var buttonPopupClose = document.getElementById('buttonPopupClose');
+  var buttonClosePopupAdd = document.getElementById('buttonClosePopupAdd');
+  var popupDelete = document.getElementById('popupDelete');
+  var popup = document.getElementById('popup');
+
+  buttonAddStudie.addEventListener('click', function() {
+    openPopup(popup);
+  });
+
+  buttonDelete.addEventListener('click', function() {
+    openPopup(popupDelete);
+  });
+
+  buttonPopupClose.addEventListener('click', function() {
+    closePopup(popupDelete);
+  });
+
+  buttonClosePopupAdd.addEventListener('click', function() {
+    closePopup(popup);
+  });
 }
 
-function saveStudiengang() {
-//	var studiengangInput = document.getElementById('studiengang');
-//	var studiengang = studiengangInput.value;
-//	alert('Studiengang gespeichert: ' + studiengang);
-	var popup = document.getElementById('popup');
-	popup.style.display = 'none';
+function openPopup(popup) {
+  popup.style.display = 'block';
 }
 
-function openPopup() {
-	var popup = document.getElementById("popupDelete");
-	popup.style.display = "block";
-}
-
-function closePopup() {
-	var popup = document.getElementById("popupDelete");
-	popup.style.display = "none";
-}
-
-function closePopupAdd() {
-	var popup = document.getElementById("popup");
-	popup.style.display = "none";
-}*/
-/*
-function showPopup() {
-  document.getElementById('popup').classList.add('fade-in');
-  document.querySelector('.popup-overlay').style.display = 'block';
-}
-*/
-function closePopupAdd() {
-  document.getElementById('popup').classList.remove('fade-in');
-  document.getElementById('popup').classList.add('fade-out');
-  setTimeout(function() {
-    document.querySelector('.popup-overlay').style.display = 'none';
-    document.getElementById('popup').classList.remove('fade-out');
-  }, 300);
-}
-
-function openPopup() {
-//  document.getElementById('popupDelete').classList.add('fade-in');
-//  document.querySelector('.popup-overlay').style.display = 'block';
-	var popup = document.getElementById("popupDelete");
-	popup.style.display = "block";
-}
-/*
-function closePopup() {
-  document.getElementById('popupDelete').classList.remove('fade-in');
-  document.getElementById('popupDelete').classList.add('fade-out');
-  setTimeout(function() {
-    document.querySelector('.popup-overlay').style.display = 'none';
-    document.getElementById('popupDelete').classList.remove('fade-out');
-  }, 300);
-}
-*/
-function showPopup() {
-  document.getElementById('popup').style.display = 'block';
-}
-
-function closePopup() {
-  	var popup = document.getElementById("popupDelete");
-	popup.style.display = "none";
-}
-
-function closePopupAdd() {
-  	var popup = document.getElementById("popup");
-	popup.style.display = "none";
+function closePopup(popup) {
+  popup.style.display = 'none';
 }

@@ -1,14 +1,34 @@
 /**
- * generiert durch ChatGPT
+ * erstellt durch Moritz Reindl
  */
 "use strict";
-// JavaScript-Code zum Anzeigen und Verwalten des Pop-up-Fensters
-function openPopup() {
-	var popup = document.getElementById("popup");
+// Verwaltung des Popups
+
+document.addEventListener("DOMContentLoaded", init);
+
+function init() {
+  var buttonDelete = document.getElementById('buttonDelete');
+  var buttonPopupClose = document.getElementById('buttonPopupClose');
+  var buttonPopupOpen = document.getElementById('buttonPopupOpen'); 
+  var popupDelete = document.getElementById('popupDelete');
+
+  buttonPopupClose.addEventListener('click', function() {
+    closePopup(popupDelete);
+  });
+
+  buttonDelete.addEventListener('click', function() {
+    openPopup(popupDelete);
+  });
+
+  buttonPopupOpen.addEventListener('click', function() {
+    closePopup(popupDelete);
+  });
+}
+
+function openPopup(popup) {
 	popup.style.display = "block";
 }
 
-function closePopup() {
-	var popup = document.getElementById("popup");
+function closePopup(popup) {
 	popup.style.display = "none";
 }

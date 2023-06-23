@@ -63,9 +63,10 @@ public class View_StudentDeckHinzufuegen extends HttpServlet {
 	}
 	
 	private void persist(String id, String doz, String studie, String modul) throws ServletException {
-		String[] generatedKeys = new String[] {"id"};
+		//String[] generatedKeys = new String[] {"id"};
+		System.out.println(id + doz + studie + modul);
 		try(Connection con = ds.getConnection();																																														//Hier wurde das Feld bilddatei ergänzt und ein ?
-				PreparedStatement pstmt = con.prepareStatement("INSERT INTO modulprostudent (student_id, dozent_id, studiengangname, modulname) VALUES (?,?,?,?)", generatedKeys)) {
+				PreparedStatement pstmt = con.prepareStatement("INSERT INTO modulprostudent (student_id, dozent_id, studiengangname, modulname) VALUES (?,?,?,?)")) {
             
             
             
@@ -113,14 +114,42 @@ public class View_StudentDeckHinzufuegen extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String studentid = request.getParameter("id");
-		String dozentid = request.getParameter("doz");
+		/*String dozentid = request.getParameter("doz");
 		String studiengang = request.getParameter("studie");
 		String modul = request.getParameter("modul");
-		
+		System.out.println(studentid + dozentid + studiengang + modul);
 		
 		persist(studentid, dozentid, studiengang, modul);
+		*/
+		System.out.println(request.getParameterValues("studie"));
+		System.out.println(request.getParameterValues("doz"));
+		System.out.println(request.getParameterValues("modul"));
+		
+		String[] studiengangs = request.getParameterValues("studie");
+		String[] dozentIds = request.getParameterValues("doz");
+		String[] modulNames = request.getParameterValues("modul");
+
+		   
+		   // Iteriere über die Arrays und verarbeite die Werte entsprechend
+		   for (int i = 0; i < studiengangs.length; i++) {
+		      String studiengang = studiengangs[i];
+		      String dozentId = dozentIds[i];
+		      String modulName = modulNames[i];
+		      
+		      // Verarbeite die Werte hier
+		      persist(studentid, dozentId, studiengang, modulName);
+		   }
+		   
+		List<ViewTeacher_ModuleBean> module = suchen(studentid);
+		
+		//request.setAttribute("id", userId);
+		//response.sendRedirect("jsp/View_StudentHome.jsp");
+		//doGet(request, response);
+		HttpSession session = request.getSession();
+		session.setAttribute("modules", module);
+		session.setAttribute("id", studentid);
+
 		response.sendRedirect("jsp/View_StudentHome.jsp");
-		doGet(request, response);
 	}
 
 }

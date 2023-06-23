@@ -3,17 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<!-- Quelle: generiert durch ChatGPT -->
 <!-- Dieses Dokument wurde erstellt durch Moritz Reindl -->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../css/ViewTeacher_StudiengaengeCSS.css">
 <title>Meine Studiengaenge</title>
+<script src="../javascript/ViewTeacher_Studiengaenge.js"></script>
 </head>
 <body>
-	<script src="../javascript/ViewTeacher_Studiengaenge.js">
-		
-	</script>
 	<div class="container">
 		<div class="popup-overlay"></div>
 
@@ -21,31 +18,15 @@
 			<h1 class="h1">Meine Studieng&#228;nge</h1>
 		</div>
 		<!-- Bis zur Markierung erstellt durch ChatGPT-->
-		<button onclick="showPopup()" class="buttonAdd">Studiengang
+		<button class="buttonAdd" id="buttonAddStudie">Studiengang
 			hinzuf&#252;gen</button>
-		<button onclick="openPopup()" class="buttonAdd">Studiengang
+		<button class="buttonAdd" id="buttonDelete">Studiengang
 			l&#246;schen</button>
-		<!-- 
-		<div id="popupDelete" class="popup">
-			<h2>Studiengang auswählen</h2>
-			<form action="../ViewTeacher_StudiengaengeLoeschenServlet" method="post">
-			<input type="hidden" name="userid" value="${LoginForm.userid}">
-			<ul id="studiengaengeListe">
-				<c:forEach items="${studienfaecher}" var="studiengang">
-				
-				<input type="hidden" name="userid" value="${studiengang.userId}">
-					<li><input type="checkbox" name="selectedStudiengaenge" value="${studiengang.studiengangname}"> <c:out value="${studiengang.studiengangname}" /></li>
-				</c:forEach>
-			</ul>
-				<button type="submit">Löschen</button>
-			</form>
-			<button onclick="closePopup()">Abbrechen</button>
-		</div>
--->
+			
 		<div id="popupDelete" class="popup">
 			<h2>Studiengang auswählen</h2>
 			<form action="../ViewTeacher_StudiengaengeLoeschenServlet"
-				method="post">
+				method="post" id="studiengangDeleteForm">
 				<input type="hidden" name="userid" value="${LoginForm.userid}">
 				<ul id="studiengaengeListe">
 					<c:forEach items="${studienfaecher}" var="studiengang">
@@ -55,11 +36,16 @@
 								value="${studiengang.studiengangname}" /></li>
 					</c:forEach>
 				</ul>
+				<div class="button-container">
 				<button type="submit">Löschen</button>
+				</div>
 			</form>
-			<button onclick="closePopup()">Abbrechen</button>
+			<div class="button-container">
+			<button id="buttonPopupClose">Abbrechen</button>
+			</div>
 		</div>
 		<!-- Markierung! -->
+		
 		<form method="post" action="../ViewTeacher_SuchenHiddenServlet">
 			<input type="hidden" name="userid" value="${LoginForm.userid}">
 			<button type="submit" class="buttonSearch">Meine gesamten
@@ -69,11 +55,10 @@
 			<input type="hidden" name="userid" value="${LoginForm.userid}">
 			<div id="popup" class="popup">
 				<label for="studiengang">Studiengang:</label> <input type="text"
-					name="studiengang" id="studiengang" required />
-				<button onclick="saveStudiengang()">Speichern</button>
-				<button onclick="closePopupAdd()">Abbrechen</button>
+					name="studiengang" id="studiengang" required maxlength="40"/>
+				<button>Speichern</button>
+				<button id="buttonClosePopupAdd">Abbrechen</button>
 			</div>
-
 		</form>
 		<form method="get" action="../ViewTeacher_ModuleServlet">
 			<input type="hidden" name="userid" value="${LoginForm.userid}">

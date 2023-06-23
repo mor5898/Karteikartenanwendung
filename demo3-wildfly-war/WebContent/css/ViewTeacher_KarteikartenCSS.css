@@ -1,0 +1,29 @@
+/* erstellt durch Moritz Reindl*/
+@charset "UTF-8";
+@import "ViewTeacher_StudiengaengeCSS.css";
+@import "ViewTeacher_ModuleCSS.css";
+
+#karteikartenListe {
+  list-style: none;
+  padding: 0;
+}
+
+#karteikartenListe li {
+  margin-bottom: 10px;
+}
+
+#karteikartenListe input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+#karteikartenListe label {
+  font-weight: bold;
+}
+
+.button-container-karteikarten {
+  padding: 10px;
+}
+
+#karteikarteDeleteForm {
+  text-align: center;
+}

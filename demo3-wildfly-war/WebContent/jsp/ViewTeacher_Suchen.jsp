@@ -4,7 +4,6 @@
 	uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-	<!-- Quelle: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_sidebar_responsive -->
 	<!-- Dieses Dokument wurde erstellt durch Moritz Reindl und Fatih Doruk-->
 	<head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
@@ -20,7 +19,7 @@
 				<input type="hidden" name="userid" value="${user.userid}">
 				<fieldset><legend>Decks suchen</legend>
 					<div class="grid-item">Titel der Karteikarte:</div>
-					  	<input type="text" id="schlagwort" name="schlagwort" placeholder="Hier SchlagwÃ¶rter eingeben"> 
+					  	<input type="text" id="schlagwort" name="schlagwort" placeholder="Hier SchlagwÃ¶rter eingeben" maxlength="50"> 
 					<div class="grid-item">
 						<button name="submit" type="submit">Suche starten</button>
 						<button name="reset" type="reset">ZurÃ¼cksetzen</button>

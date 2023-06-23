@@ -6,15 +6,11 @@
 <!-- Dieses Dokument wurde erstellt durch Moritz Reindl -->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../css/Sidebar.css">
+<link rel="stylesheet" href="../css/ViewTeacher_KarteikartenCSS.css">
+<script src="../javascript/ViewTeacher_Karteikarten.js"> </script>
 </head>
 <body>
-<script src="../javascript/ViewTeacher_Karteikarten.js"> </script>
-<!--	<div class="sidebar">-->
-<!--		<a href="#profil">Profil</a> <a class="active" href="#decks">Meine-->
-<!--			Decks</a> <a href="#suchen">Suchen</a>-->
-<!--	</div>-->
-
+<div class="container">
 	<div class="decks">
 		<h1 class="h1">
 			<a href="ViewTeacher_Studiengaenge.jsp">Meine Studiengaenge</a>: <a
@@ -40,13 +36,16 @@
 			zur&#252;ck
 		</button>
 		</form>
+	
 <!-- Bis zur Markierung erstellt durch ChatGPT-->
-		<button onclick="openPopup()" >Karteikarte
+		
+		<div class="button-container-karteikarten">
+		<button id="buttonDelete" >Karteikarte
 				l&#246;schen</button>
-
-		<div id="popup" class="popup">
+		</div>
+		<div id="popupDelete" class="popup">
 			<h2>Titel auswählen</h2>
-			<form action="../ViewTeacher_KarteikartenLoeschenServlet" method="post">
+			<form action="../ViewTeacher_KarteikartenLoeschenServlet" method="post" id="karteikarteDeleteForm">
 			<ul id="karteikartenListe">
 				<c:forEach items="${karteikarten}" var="karteikarte">
 				<!-- Nachfolgende Zeilen erstellt durch Moritz Reindl -->
@@ -56,9 +55,11 @@
 					<li><input type="checkbox" name="selectedKarteikarten" value="${karteikarte.karteikartenId}"> <c:out value="${karteikarte.titel}" /></li>
 				</c:forEach>
 			</ul>
+			<div class="button-container">
 				<button type="submit">Löschen</button>
+				</div>
 			</form>
-			<button onclick="closePopup()">Abbrechen</button>
+			<button id="buttonPopupClose">Abbrechen</button>
 		</div>
 <!-- Markierung! -->
 
@@ -80,7 +81,7 @@
 						<td>${karteikarte.titel}</td>
 						<td>${karteikarte.fragentext}</td>
 						<td><button type="submit" name="titel" id="karteikarte.titel"
-								value="${karteikarte.titel}" />${karteikarte.titel}</button></td>
+								value="${karteikarte.titel}" />Frage bearbeiten</button></td>
 					</tr>
 					</tr>
 				</c:forEach>
@@ -88,5 +89,6 @@
 		</div>
 	</form>
 	<p>Eingeloggt: ${LoginForm.userid}</p>
+	</div>
 </body>
 </html>

@@ -1,3 +1,4 @@
+/* vollständig generiert durch ChatGPT */
 .container {
   display: grid;
   grid-template-columns: 1fr;
@@ -114,6 +115,7 @@ button:hover {
   z-index: 999;
   position: relative;
   animation: fade-in 0.3s ease-in-out;
+  font-family: Arial, sans-serif; /* Zeile hinzugefügt durch Moritz Reindl */
 }
 
 
@@ -174,4 +176,43 @@ p {
     opacity: 0;
     transform: translateY(-20px);
   }
+}
+
+#studiengaengeListe {
+  list-style: none;
+  padding: 0;
+}
+
+#studiengaengeListe li {
+  margin-bottom: 10px;
+}
+
+#studiengaengeListe input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+#studiengaengeListe label {
+  font-weight: bold;
+}
+
+.show-popup {
+  display: grid;
+  /* Andere CSS-Regeln, um das Popup anzuzeigen */
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px; /* Fügt einen Abstand von 10px unterhalb der Button-Container hinzu */
+}
+
+#studiengangDeleteForm {
+  text-align: center; /* Zentriert den Button im Formular */
 }

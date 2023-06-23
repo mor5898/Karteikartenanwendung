@@ -11,10 +11,6 @@
 
 <body class="body">
 
-	<div class="sidebar">
-		<a href="#profil">Profil</a> <a class="active" href="#decks">Meine
-			Decks</a> <a href="#suchen">Suchen</a>
-	</div>
 	<div class="decks">
 		<h1 class="h1">
 			<a href="MeineThemen.html">Meine Themen</a>: <a
@@ -32,10 +28,10 @@
 		<div class="answer">
 			<div class="grid-item">Titel:</div>
 			<input type="text" id="titel" name="titel"
-				value="${karteikarte.titel}" required>
+				value="${karteikarte.titel}" required maxlength="50">
 			<div class="grid-item">Frage:</div>
 			<input type="text" id="fragentext" name="fragentext"
-				value="${karteikarte.fragentext}" required>
+				value="${karteikarte.fragentext}" required maxlength="500">
 			<div class="grid-item">Bilddatei (optional):</div>
 
 			<button type="submit" name="submit">speichern</button>
@@ -45,16 +41,16 @@
 			<div class="answerOptions">
 				<div class="grid-item">Antwort A:</div>
 				<input type="text" id="antwortA" name="antwortA"
-					value="${karteikarte.antwortA}" required>
+					value="${karteikarte.antwortA}" required maxlength="250">
 				<div class="grid-item">Antwort B:</div>
 				<input type="text" id="antwortB" name="antwortB"
-					value="${karteikarte.antwortB}" required>
+					value="${karteikarte.antwortB}" required maxlength="250">
 				<div class="grid-item">Antwort C:</div>
 				<input type="text" id="antwortC" name="antwortC"
-					value="${karteikarte.antwortC}" required>
+					value="${karteikarte.antwortC}" required maxlength="250">
 				<div class="grid-item">Antwort D:</div>
 				<input type="text" id="antwortD" name="antwortD"
-					value="${karteikarte.antwortD}" required>
+					value="${karteikarte.antwortD}" required maxlength="250">
 			</div>
 			<div class="grid-item">Korrekte Antwort:</div>
 			<select name="korrekteAntwort" id="korrekteAntwort" required>
@@ -65,12 +61,12 @@
 			</select>
 			<div class="grid-item">Begruendung der Antwort:</div>
 			<input type="text" id="begruendungstext" name="begruendungstext"
-				value="${karteikarte.begruendung}" required>
+				value="${karteikarte.begruendung}" required maxlength="500">
 			<div class="button"></div>
 		</div>
 	</form>
 	<form action="Profil.html">
-		<input type="submit" value="Abbrechen" class="buttonCancel">
+		<button type="submit" value="zur&#252;ck" class="buttonBack"><a href="ViewTeacher_Karteikarten.jsp">zur&#252;ck</a></button>
 	</form>
 	<p>Eingeloggt: ${karteikarte.userId}</p>
 </body>

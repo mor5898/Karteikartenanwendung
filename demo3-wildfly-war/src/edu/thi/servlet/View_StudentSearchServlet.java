@@ -49,7 +49,9 @@ public class View_StudentSearchServlet extends HttpServlet {
 		request.setAttribute("module", module);
 		request.setAttribute("user", user);
 		System.out.println("Sind die Module leer? : " + module.isEmpty());
-		//System.out.println(module.get(0).getModulname());
+		System.out.println(module.get(0).getModulname());
+		System.out.println(module.get(1).getModulname());
+		
 		// Weiterleiten an JSP
 		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/View_StudentSearchResults.jsp");
 		dispatcher.forward(request, response);	
@@ -62,8 +64,9 @@ public class View_StudentSearchServlet extends HttpServlet {
 		// DB-Zugriff
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement("SELECT modul.modulname, modul.studiengangname, karteikarte.userId " 
-						+ "FROM modul "
-						+ "INNER JOIN karteikarte ON modul.modulname = karteikarte.modulname "
+					//	+ "FROM modul "
+						+ "FROM modul  NATURAL JOIN karteikarte "
+						//+ "INNER JOIN karteikarte ON modul.modulname = karteikarte.modulname "
 						+ "WHERE modul.modulname LIKE ?")) {
 
 			pstmt.setString(1, lastname);
