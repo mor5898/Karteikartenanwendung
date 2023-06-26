@@ -1,0 +1,32 @@
+<!-- Erstellt durch: Muhammed Samil Turan -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Register page</title>
+	<link rel="stylesheet" href="../css/Login.css">
+</head>
+<body>
+	<form class="logo">
+		<img src="../images/logo.jpeg" alt="Logo" width="200" height="200">
+	</form>
+	<form class="login" method="post" action="../RegisterServlet">
+		<label for="userid">Benutzername:</label><br>
+		<input type="text" id="userid" name="userid" required><br>
+		<label for="email">Email:</label><br>
+		<input type="email" id="email" name="email" required><br>
+		<label for="password">Passwort:</label><br>
+		<input type="password" id="password" name="password" required><br><br>
+		<label for="passwortWiederholen">Passwort wiederholen:</label><br>
+		<input type="password" id="password2" name="password2" required><br><br>	
+		<label for="role">Rolle:</label>
+  		<select name="role" id="role">
+    		<option value="dozent">Dozent</option>
+    		<option value="Student">Student</option>
+   		 </select>
+  		<br><br>
+    	<input type="submit" value="Registrieren"><br>
+    	<label><a href="../index.html">Zurück zur Anmeldung</a></label>
+	</form>
+</body>
+</html>
