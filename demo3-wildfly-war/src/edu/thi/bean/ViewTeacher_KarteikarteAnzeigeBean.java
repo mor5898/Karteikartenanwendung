@@ -1,8 +1,10 @@
 package edu.thi.bean;
 import java.io.Serializable;
-
+//Erstellt durch Riza Dursun und Fatih Doruk
 public class ViewTeacher_KarteikarteAnzeigeBean implements Serializable
 {
+	
+	private static final long serialVersionUID = 1L;
 	private String studiengang;
 	private String modul;
 	private int karteikarteID;

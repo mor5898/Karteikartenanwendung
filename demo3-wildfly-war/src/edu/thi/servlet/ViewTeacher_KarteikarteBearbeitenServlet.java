@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ViewTeacher_KarteikarteBearbeitenServlet
+ * Erstellt durch Moritz Reindl
  */
 @WebServlet("/ViewTeacher_KarteikarteBearbeitenServlet")
 public class ViewTeacher_KarteikarteBearbeitenServlet extends HttpServlet {
@@ -29,45 +29,24 @@ public class ViewTeacher_KarteikarteBearbeitenServlet extends HttpServlet {
 	@Resource(lookup = "java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
 
-    /**
-     * Default constructor. 
-     */
-    public ViewTeacher_KarteikarteBearbeitenServlet() {
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	// Methode lädt die Daten der Karteikarte und übergibt sie an die Jsp, somit sind die Felder in der jsp vorbelegt 
+	// Karteikarte wird bearbeitet, nicht neu erstellt!
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
+		
 		String studiengangname = request.getParameter("studienfachId");
 		String userId = request.getParameter("userid");
-		String modulname = request.getParameter("modulname");
 		String karteikartenId = request.getParameter("karteikartenId");
-		String fragentext = request.getParameter("fragentext");
-		String titel = request.getParameter("titel");
-		System.out.println("Daten: " + studiengangname + userId + modulname + karteikartenId + fragentext + titel);
-		ViewTeacher_KarteikarteErstellenBean karteikarteForList = new ViewTeacher_KarteikarteErstellenBean();
-		
-		//List<ViewTeacher_KarteikarteErstellenBean> karteikarten = new ArrayList<>();
+
+		ViewTeacher_KarteikarteErstellenBean karteikarteForList = new ViewTeacher_KarteikarteErstellenBean();	
 
 		try (Connection con = ds.getConnection();) {
-			/*String query = "SELECT * FROM karteikarte WHERE userId = '" + userId + "' AND studiengangname = '" + studiengangname + "'"
-					+ " AND modulname = '" + modulname + "'" + " AND karteikartenId = " + karteikartenId + " AND fragentext = '" + fragentext + "'"
-					+ " AND titel = '" + titel + "'";*/
+
 			String query = "SELECT * FROM karteikarte WHERE karteikartenId = " + karteikartenId;
 			PreparedStatement statement = con.prepareStatement(query);
 			ResultSet resultSet = statement.executeQuery();
-			//System.out.println(resultSet.next());
+		
 			if (resultSet.next()) {
 				
 				String modulnameForList = resultSet.getString("modulname");
@@ -100,12 +79,6 @@ public class ViewTeacher_KarteikarteBearbeitenServlet extends HttpServlet {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("karteikarte", karteikarteForList);
-		System.out.println(karteikarteForList.getkarteikartenId());
-		System.out.println(karteikarteForList.getantwortA());
-		System.out.println(karteikarteForList.getantwortB());
-		System.out.println(karteikarteForList.getModulname());
-		System.out.println(karteikarteForList.getbegruendung());
-		System.out.println("Ende!");
 		response.sendRedirect("jsp/ViewTeacher_KarteikarteBearbeiten.jsp");
 	}
 

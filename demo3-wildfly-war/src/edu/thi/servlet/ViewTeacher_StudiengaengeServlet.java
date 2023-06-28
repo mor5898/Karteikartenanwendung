@@ -20,53 +20,38 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class StudiengangServlet
+ * erstellt durch Moritz Reindl
  */
 @WebServlet("/ViewTeacher_StudiengaengeServlet")
 public class ViewTeacher_StudiengaengeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String DB_USER = "admin"; // Generiert durch ChatGPT
-	private static final String DB_PASSWORD = "admin"; // Generiert durch ChatGPT
-
+	// Datenbankconnection erstellt durch Moritz Reindl
 	@Resource(lookup = "java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
 
-	/**
-	 * Default constructor.
-	 */
-	public ViewTeacher_StudiengaengeServlet() {
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * doGet generiert durch ChatGPT
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*
-		 * List<Studiengang> studienfaecher = getAllStudienfaecher();
-		 * request.setAttribute("studienfaecher", studienfaecher);
-		 * request.getRequestDispatcher("ViewTeacher/jsp/MeineThemen.jsp").forward(
-		 * request, response);
-		 */
 	}
 
 	/**
 	 * doPost generiert durch ChatGPT
+	 * Diese Methode nimmt die Parameter entgegen, fügt den eingegebene Studiengang hinzu und holt anschließend(!) alle Studiengänge des eingeloggten users
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
+
 		String studiengangname = request.getParameter("studiengang");
 		String userId = request.getParameter("userid");
+
 		ViewTeacher_StudiengaengeBean studienfach = new ViewTeacher_StudiengaengeBean();
 		studienfach.setStudiengangname(studiengangname);
 		studienfach.setUserId(userId);
+
 		insertStudiengang(studienfach);
-		// doGet(request, response);
-		/*
-		 * List<ViewTeacher_StudiengaengeBean> studienfaecher = getAllStudienfaecher();
-		 */
+
 		List<ViewTeacher_StudiengaengeBean> studienfaecher = new ArrayList<>();
 
 		try (Connection con = ds.getConnection();) {
@@ -84,61 +69,26 @@ public class ViewTeacher_StudiengaengeServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("studienfaecher", studienfaecher);
-		// request.getRequestDispatcher("ViewTeacher/jsp/MeineThemen.jsp").forward(request,
-		// response);
-		if (studienfaecher.isEmpty()) {
-			response.getWriter().println("Fehler beim Speichern des Studienfachs.");
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("studienfaecher", studienfaecher);
-			response.sendRedirect("jsp/ViewTeacher_Studiengaenge.jsp");
-		}
+
+		HttpSession session = request.getSession();
+		session.setAttribute("studienfaecher", studienfaecher);
+		response.sendRedirect("jsp/ViewTeacher_Studiengaenge.jsp");
 	}
 
 	/**
-	 * getAllStudienfaecher() generiert durch ChatGPT
-	 */
-	private List<ViewTeacher_StudiengaengeBean> getAllStudienfaecher() {
-		List<ViewTeacher_StudiengaengeBean> studienfaecher = new ArrayList<>();
-
-		try (Connection con = ds.getConnection();) {
-			String query = "SELECT studiengangname FROM studiengang WHERE userId = ";
-			PreparedStatement statement = con.prepareStatement(query);
-			ResultSet resultSet = statement.executeQuery();
-
-			while (resultSet.next()) {
-				String studienfachId = resultSet.getString("studiengangname");
-				ViewTeacher_StudiengaengeBean studienfach = new ViewTeacher_StudiengaengeBean();
-				studienfach.setStudiengangname(studienfachId);
-				studienfaecher.add(studienfach);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return studienfaecher;
-	}
-
-	/**
-	 * insertStudiengang generiert durch ChatGPT
+	 * Methode zum Einfügen eines Studiengangs in die Datenbank
 	 */
 	private void insertStudiengang(ViewTeacher_StudiengaengeBean studienfach) {
 
 		boolean duplicateFound = checkDuplicateStudiengang(studienfach);
 
 		if (!duplicateFound) {
-
+			
 			try (Connection con = ds.getConnection();
 					PreparedStatement statement = con
-							.prepareStatement("INSERT INTO studiengang (studiengangname, userId) VALUES (?,?)")) // Zeile
-																													// erstellt
-																													// durch
-																													// Moritz
-																													// Reindl
+							.prepareStatement("INSERT INTO studiengang (studiengangname, userId) VALUES (?,?)")) // Zeile erstellt durch Moritz Reindl
 			{
-				// String query = "INSERT INTO studienfach (studienfachId, userId) VALUES
-				// (?,?)";
-				// PreparedStatement statement = con.prepareStatement(query);
+
 				// Die folgenden drei Zeilen wurden erstellt durch Moritz Reindl
 				statement.setString(1, studienfach.getStudiengangname());
 				statement.setString(2, studienfach.getUserId());

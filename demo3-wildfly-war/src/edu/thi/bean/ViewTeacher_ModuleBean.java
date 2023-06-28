@@ -5,6 +5,7 @@ import java.io.Serializable;
 //Erstellt durch Moritz Reindl
 public class ViewTeacher_ModuleBean implements Serializable{
     
+	private static final long serialVersionUID = 1L;
 	private String modulname;
 	private String studiengangname;
     private String userId;

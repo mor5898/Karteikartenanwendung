@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Erstellt durch: Moritz Reindl
+ * Erstellt durch Moritz Reindl
  */
 @WebServlet("/ViewTeacher_KarteikartenServlet")
 public class ViewTeacher_KarteikartenServlet extends HttpServlet {
@@ -30,31 +30,15 @@ public class ViewTeacher_KarteikartenServlet extends HttpServlet {
 
 	@Resource(lookup = "java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
-
-    /**
-     * Default constructor. 
-     */
-    public ViewTeacher_KarteikartenServlet() {
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+	// Methode holt sich alle Karteikarten des gewählten Moduls eines Users
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
+		
 		String studiengangname = request.getParameter("studienfachId");
 		String userId = request.getParameter("userid");
 		String modulname = request.getParameter("modulname");
-		System.out.println("Studiengang: " + studiengangname + " userId: " + userId + " modulname: " + modulname);
 		
 		ViewTeacher_StudiengaengeBean studiengang = new ViewTeacher_StudiengaengeBean();
 		studiengang.setStudiengangname(studiengangname);
@@ -90,8 +74,6 @@ public class ViewTeacher_KarteikartenServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		//System.out.println("Erste Karteikarte: " + karteikarten.get(0) + " Modul: " + modul.getModulname() + " Studiengang: " + studiengang.getStudiengangname() + " User: " + userId);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("karteikarten", karteikarten);

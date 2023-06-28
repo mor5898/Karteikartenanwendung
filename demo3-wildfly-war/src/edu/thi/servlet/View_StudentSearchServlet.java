@@ -39,7 +39,8 @@ public class View_StudentSearchServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");	// In diesem Format erwartet das Servlet jetzt die Formulardaten
 		String searchTerm = request.getParameter("searchTerm");
 		
-		String userid = request.getParameter("userid");
+		String userid = request.getParameter("userId");
+		System.out.println("Das ist die RELEVANTE userid: "+ userid);
 		RegisterBean user = new RegisterBean();
 		user.setUserid(userid);
 		// DB-Zugriff
@@ -48,9 +49,9 @@ public class View_StudentSearchServlet extends HttpServlet {
 		// Scope "Request"
 		request.setAttribute("module", module);
 		request.setAttribute("user", user);
-		System.out.println("Sind die Module leer? : " + module.isEmpty());
-		System.out.println(module.get(0).getModulname());
-		System.out.println(module.get(1).getModulname());
+	  //	System.out.println("Sind die Module leer? : " + module.isEmpty());
+		//System.out.println(module.get(0).getModulname());
+		//System.out.println(module.get(1).getModulname());
 		
 		// Weiterleiten an JSP
 		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/View_StudentSearchResults.jsp");

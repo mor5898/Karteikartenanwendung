@@ -1,4 +1,5 @@
-/* vollständig generiert durch ChatGPT */
+@import "ViewTeacher_AbmeldenCSS.css";
+/* ab hier generiert durch ChatGPT */
 .container {
   display: grid;
   grid-template-columns: 1fr;

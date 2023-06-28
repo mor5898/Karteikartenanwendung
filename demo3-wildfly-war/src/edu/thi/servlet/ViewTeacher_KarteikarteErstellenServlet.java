@@ -26,18 +26,21 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 /** 
- * Servlet implementation class ViewTeacher_KarteikarteErstellenServlet
+ * Erstellt durch Riza Dursun und Fatih Doruk
  */
 @WebServlet("/ViewTeacher_KarteikarteErstellenServlet")
 //Hier diese Annotation übergeben
 @MultipartConfig
 public class ViewTeacher_KarteikarteErstellenServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
+	
 	@Resource(lookup="java:jboss/datasources/MySqlThidbDS")
     private DataSource ds;
 	
-	//Hier muss für die Methode Part filepart ergänzt werden
+	//Methode zum Speichern einer Karteikarte in der Datenbank, hier wird auch das Bild gespeichert
 	private void persist(ViewTeacher_KarteikarteErstellenBean form, Part filepart) throws ServletException {
+		
 		String[] generatedKeys = new String[] {"id"};
 		
 		try(Connection con = ds.getConnection();																																														//Hier wurde das Feld bilddatei ergänzt und ein ?
@@ -90,18 +93,14 @@ public class ViewTeacher_KarteikarteErstellenServlet extends HttpServlet {
 	
 		
 	}
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
-	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Methode nimmt Parameter entgegen, ruft die Methode zum Speichern der Karteikarte auf und holt sich anschließend alle Karteikarten des aktuellen Moduls
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+		
 		ViewTeacher_KarteikarteErstellenBean form = new ViewTeacher_KarteikarteErstellenBean();
 		form.setfragentext(request.getParameter("fragentext"));
 		form.setantwortA(request.getParameter("antwortA"));
@@ -176,9 +175,6 @@ public class ViewTeacher_KarteikarteErstellenServlet extends HttpServlet {
 		session.setAttribute("modul", modul);
 		session.setAttribute("studienfachId", studiengang);
 		session.setAttribute("userid", form.getUserId());
-		
-		//final HttpSession session = request.getSession();
-		//session.setAttribute("form", form);
 		
 		response.sendRedirect("jsp/ViewTeacher_Karteikarten.jsp");
 		

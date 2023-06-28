@@ -1,8 +1,7 @@
 /**
- * erstellt durch Moritz Reindl
+ * erstellt durch Samil Turan
  */
 "use strict";
-// Verwaltung des Popups
 
 document.addEventListener("DOMContentLoaded", init);
 

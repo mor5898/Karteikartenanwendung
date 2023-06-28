@@ -112,15 +112,15 @@ public class View_StudentDeckHinzufuegen extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		/*
 		String studentid = request.getParameter("id");
-		/*String dozentid = request.getParameter("doz");
+		String dozentid = request.getParameter("doz");
 		String studiengang = request.getParameter("studie");
 		String modul = request.getParameter("modul");
 		System.out.println(studentid + dozentid + studiengang + modul);
 		
 		persist(studentid, dozentid, studiengang, modul);
-		*/
+		
 		System.out.println(request.getParameterValues("studie"));
 		System.out.println(request.getParameterValues("doz"));
 		System.out.println(request.getParameterValues("modul"));
@@ -149,7 +149,29 @@ public class View_StudentDeckHinzufuegen extends HttpServlet {
 		session.setAttribute("modules", module);
 		session.setAttribute("id", studentid);
 
-		response.sendRedirect("jsp/View_StudentHome.jsp");
+		response.sendRedirect("jsp/View_StudentHome.jsp");*/
+	    // doPost-Methode des Servlets
+	    
+	    // Auslesen der übermittelten Formulardaten
+	    String studiengang = request.getParameter("studie");
+	    String modul = request.getParameter("modul");
+	    String dozent = request.getParameter("doz");
+	    String id = request.getParameter("id");
+	    
+	    persist(id, dozent, studiengang, modul);
+	    // Erzeugen eines Beans zur Weitergabe der Formulardaten an eine JSP
+	  //  ViewTeacher_ModuleBean selectedModule = new ViewTeacher_ModuleBean();
+	    //selectedModule.setStudiengangname(studiengang);
+	    //selectedModule.setModulname(modul);
+	    //selectedModule.setUserId(dozent);
+	    List<ViewTeacher_ModuleBean> module = suchen(id);
+	    // Scope "Session" für das ausgewählte Modul
+	    HttpSession session = request.getSession();
+	    session.setAttribute("modules", module);
+	    response.sendRedirect("jsp/View_StudentHome.jsp");
+	    // Weiterleiten an die JSP mit der Tabelle für das Suchergebnis
+	    //final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/View_StudentHome.jsp");
+	    //dispatcher.forward(request, response);
 	}
 
 }

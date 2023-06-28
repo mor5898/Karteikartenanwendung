@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BildServlet
+ * erstellt durch Fatih Doruk
  */
 @WebServlet("/ViewTeacher_KarteikarteErstellenBildServlet")
 public class ViewTeacher_KarteikarteErstellenBildServlet extends HttpServlet implements Servlet {
@@ -29,7 +29,7 @@ public class ViewTeacher_KarteikarteErstellenBildServlet extends HttpServlet imp
 	private DataSource ds;
 	
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * Methode lädt eine Bilddatei aus der Datenbank
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -63,14 +63,6 @@ public class ViewTeacher_KarteikarteErstellenBildServlet extends HttpServlet imp
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

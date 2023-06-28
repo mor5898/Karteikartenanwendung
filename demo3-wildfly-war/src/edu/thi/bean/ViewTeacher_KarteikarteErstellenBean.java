@@ -1,5 +1,5 @@
 package edu.thi.bean;
-
+//Erstellt durch Riza Dursun und Fatih Doruk
 import java.io.Serializable;
 
 public class ViewTeacher_KarteikarteErstellenBean implements Serializable {

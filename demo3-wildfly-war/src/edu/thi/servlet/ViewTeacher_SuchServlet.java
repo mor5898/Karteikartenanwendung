@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SuchServlet
+ * erstellt durch Fatih Doruk
  */
 @WebServlet("/ViewTeacher_SuchServlet")
 public class ViewTeacher_SuchServlet extends HttpServlet implements Servlet {
@@ -30,6 +30,7 @@ public class ViewTeacher_SuchServlet extends HttpServlet implements Servlet {
 	@Resource(lookup="java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
 	
+	// Methode zum Durchsuchen des Feldes Titel der Tabelle Karteikarte nach dem Schlagwort
 	List<ViewTeacher_KarteikarteAnzeigeBean> suchen(String schlagwort, String userid) throws ServletException
 	{
 		schlagwort = (schlagwort == null || schlagwort == "") ? "%" : "%" + schlagwort + "%";
@@ -74,24 +75,13 @@ public class ViewTeacher_SuchServlet extends HttpServlet implements Servlet {
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*request.setCharacterEncoding("UTF-8");
-		
-		String schlagwort = request.getParameter("schlagwort");
-		
-		List<ViewTeacher_KarteikarteAnzeigeBean> karteikarten = suchen(schlagwort);
-		
-		request.setAttribute("karteikarten", karteikarten);
-		
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("jsp/ViewTeacher_suchergebnis.jsp");
-		dispatcher.forward(request, response);*/
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Entgegennahme der Parameter, Aufruf der Suchmethode und Weiterleitung an Ergebnis-Jsp
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+		
 		request.setCharacterEncoding("UTF-8");
 		
 		String schlagwort = request.getParameter("schlagwort");

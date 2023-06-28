@@ -1,3 +1,4 @@
+// erstellt durch Moritz Reindl
 "use strict";
 
 document.addEventListener("DOMContentLoaded", init);

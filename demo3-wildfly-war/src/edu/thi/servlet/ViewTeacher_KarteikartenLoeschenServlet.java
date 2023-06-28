@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ViewTeacher_KarteikartenLoeschenServlet
+ * Erstellt durch Moritz Reindl
  */
 @WebServlet("/ViewTeacher_KarteikartenLoeschenServlet")
 public class ViewTeacher_KarteikartenLoeschenServlet extends HttpServlet {
@@ -30,29 +30,16 @@ public class ViewTeacher_KarteikartenLoeschenServlet extends HttpServlet {
 
 	@Resource(lookup = "java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
-    /**
-     * Default constructor. 
-     */
-    public ViewTeacher_KarteikartenLoeschenServlet() {
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+	// Methode zum Löschen beliebig vieler Karteikarten eines Moduls
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
 		
 		String modulname = request.getParameter("modulname");
 		String studiengangname = request.getParameter("studienfachId");
 		String userId = request.getParameter("userid");
+		
 		ViewTeacher_StudiengaengeBean studiengang = new ViewTeacher_StudiengaengeBean();
 		studiengang.setStudiengangname(studiengangname);
 		studiengang.setUserId(userId);
@@ -61,6 +48,7 @@ public class ViewTeacher_KarteikartenLoeschenServlet extends HttpServlet {
 		modul.setStudiengangname(studiengangname);
 		modul.setUserId(userId);
 		modul.setModulname(modulname);
+		
 		// Code bis zur Markierung generiert durch ChatGPT
 		String[] selectedKarteikartenIds = request.getParameterValues("selectedKarteikarten");
 		
@@ -105,8 +93,6 @@ public class ViewTeacher_KarteikartenLoeschenServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		//System.out.println("Erste Karteikarte: " + karteikarten.get(0) + " Modul: " + modul.getModulname() + " Studiengang: " + studiengang.getStudiengangname() + " User: " + userId);
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("karteikarten", karteikarten);

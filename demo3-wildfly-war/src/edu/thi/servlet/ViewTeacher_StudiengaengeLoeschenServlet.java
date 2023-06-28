@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ViewTeacher_StudiengaengeLoeschenServlet
+ * erstellt durch Samil Turan
  */
 @WebServlet("/ViewTeacher_StudiengaengeLoeschenServlet")
 public class ViewTeacher_StudiengaengeLoeschenServlet extends HttpServlet {
@@ -29,58 +29,49 @@ public class ViewTeacher_StudiengaengeLoeschenServlet extends HttpServlet {
 
 	@Resource(lookup = "java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
-    /**
-     * Default constructor. 
-     */
-    public ViewTeacher_StudiengaengeLoeschenServlet() {
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Methode zum Löschen beliebig vieler Studiengänge eines Users
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
 
 		String userId = request.getParameter("userid");
 
-		
 		// Code bis zur Markierung generiert durch ChatGPT
 		String[] selectedStudiengaenge = request.getParameterValues("selectedStudiengaenge");
-		
+
 		System.out.println(selectedStudiengaenge.length);
 		System.out.println("userId: " + userId);
-        // Datenbankverbindung aufbauen und Einträge löschen
-        try (Connection con = ds.getConnection();) {
-            String sql = "DELETE FROM studiengang WHERE studiengangname = ? AND userId = '" + userId + "'";
-            PreparedStatement statement = con.prepareStatement(sql);
-            
-            // Für jede ausgewählte Id das Prepared Statement ausführen
-            for (String studiengangname : selectedStudiengaenge) {
-                statement.setString(1, studiengangname);
-                statement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Hier können Sie geeignete Fehlerbehandlung durchführen
-        }
-        // Markierung!
-        
+		// Datenbankverbindung aufbauen und Einträge löschen
+		try (Connection con = ds.getConnection();) {
+			String sql = "DELETE FROM studiengang WHERE studiengangname = ? AND userId = '" + userId + "'";
+			PreparedStatement statement = con.prepareStatement(sql);
+
+			// Für jede ausgewählte Id das Prepared Statement ausführen
+			for (String studiengangname : selectedStudiengaenge) {
+				statement.setString(1, studiengangname);
+				statement.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// Markierung!
+
 		List<ViewTeacher_StudiengaengeBean> studienfaecher = new ArrayList<>();
 
 		try (Connection con = ds.getConnection();) {
 			String query = "SELECT studiengangname FROM studiengang WHERE userId = '" + userId + "'";
 			PreparedStatement statement = con.prepareStatement(query);
 			ResultSet resultSet = statement.executeQuery();
-		
+
 			while (resultSet.next()) {
 				String studienfachId = resultSet.getString("studiengangname");
 				ViewTeacher_StudiengaengeBean studiengang = new ViewTeacher_StudiengaengeBean();
@@ -91,15 +82,10 @@ public class ViewTeacher_StudiengaengeLoeschenServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		request.setAttribute("studienfaecher", studienfaecher);
-		// request.getRequestDispatcher("ViewTeacher/jsp/MeineThemen.jsp").forward(request,
-		// response);
-	//	if (studienfaecher.isEmpty()) {
-	//		response.getWriter().println("Fehler beim Speichern des Studienfachs.");
-	//	} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("studienfaecher", studienfaecher);
-			response.sendRedirect("jsp/ViewTeacher_Studiengaenge.jsp");
-	//	}
+
+		HttpSession session = request.getSession();
+		session.setAttribute("studienfaecher", studienfaecher);
+		response.sendRedirect("jsp/ViewTeacher_Studiengaenge.jsp");
 	}
 
 }

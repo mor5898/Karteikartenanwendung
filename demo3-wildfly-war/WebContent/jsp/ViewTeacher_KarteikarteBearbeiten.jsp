@@ -31,7 +31,7 @@
 				value="${karteikarte.titel}" required maxlength="50">
 			<div class="grid-item">Frage:</div>
 			<input type="text" id="fragentext" name="fragentext"
-				value="${karteikarte.fragentext}" required maxlength="500">
+				value="${karteikarte.fragentext}" required maxlength="250">
 			<div class="grid-item">Bilddatei (optional):</div>
 
 			<button type="submit" name="submit">speichern</button>

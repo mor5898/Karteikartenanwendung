@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <!-- Dieses Dokument wurde erstellt durch Moritz Reindl -->
+<!-- Seite zum Verwalten der Module eines Studiengangs -->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../css/ViewTeacher_ModuleCSS.css">
@@ -13,12 +14,15 @@
 </head>
 <body>
 	<div class="container">
+		<p>
+			<a id="abmelden" href="../index.html">ausloggen</a>
+		</p>
 		<div class="decks">
+			
 			<form action="../ViewTeacher_ModuleServlet" method="post">
 				<h1 class="h1">
 					<a href="ViewTeacher_Studiengaenge.jsp">Meine Studiengaenge</a>:${studienfachId.studiengangname}
 				</h1>
-				<!--<form action="../ViewTeacher_ModuleServlet" method="post">-->
 				<input type="hidden" name="userid" value="${LoginForm.userid}">
 				<input type="hidden" name="studienfachId"
 					value="${studienfachId.studiengangname}">
@@ -31,6 +35,7 @@
 					<button id="buttonClosePopupAdd">Abbrechen</button>
 				</div>
 			</form>
+			
 			<!-- Bis zur Markierung erstellt durch ChatGPT-->
 			<button id="buttonDelete">Modul l&#246;schen</button>
 
@@ -55,14 +60,12 @@
 				</form>
 				<button id="buttonPopupClose">Abbrechen</button>
 			</div>
-
-
-
-			<!-- Markierung! -->
+		<!-- Markierung! -->
+			
 			<button type="submit" value="zur&#252;ck" class="buttonBack">
-				<a href="ViewTeacher_Studiengaenge.jsp">zur&#252;ck</a>
-			</button>
+				<a href="ViewTeacher_Studiengaenge.jsp">zur&#252;ck</a></button>
 		</div>
+		
 		<form method="post" action="../ViewTeacher_KarteikartenServlet">
 			<input type="hidden" name="userid" value="${LoginForm.userid}">
 			<input type="hidden" name="studienfachId"
@@ -81,10 +84,13 @@
 				</table>
 			</div>
 		</form>
+		
 		<p>Module können nur einmal angelegt werden. Bei erneutem Anlegen
 			eines bereits existierenden Modul, wird kein neues Modul angelegt!</p>
+		
 		<p>Eingeloggt: ${LoginForm.userid}</p>
 	</div>
+	
 </body>
 </html>
 

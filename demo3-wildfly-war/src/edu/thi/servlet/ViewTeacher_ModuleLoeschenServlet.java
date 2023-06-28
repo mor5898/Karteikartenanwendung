@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ViewTeacher_ModuleLoeschenServlet
+ * Erstellt durch Samil Turan
  */
 @WebServlet("/ViewTeacher_ModuleLoeschenServlet")
 public class ViewTeacher_ModuleLoeschenServlet extends HttpServlet {
@@ -29,25 +29,13 @@ public class ViewTeacher_ModuleLoeschenServlet extends HttpServlet {
 
 	@Resource(lookup = "java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
-    /**
-     * Default constructor. 
-     */
-    public ViewTeacher_ModuleLoeschenServlet() {
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Methode zum Löschen beliebig vieler Module eines Users
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
 		
 		String modulname = request.getParameter("modulname");
 		String studiengangname = request.getParameter("studienfachId");
@@ -60,6 +48,7 @@ public class ViewTeacher_ModuleLoeschenServlet extends HttpServlet {
 		modul.setStudiengangname(studiengangname);
 		modul.setUserId(userId);
 		modul.setModulname(modulname);
+		
 		// Code bis zur Markierung generiert durch ChatGPT
 		String[] selectedModulname = request.getParameterValues("selectedModule");
 		

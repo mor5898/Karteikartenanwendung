@@ -25,34 +25,27 @@ import jakarta.servlet.http.HttpSession;
  */
 @WebServlet("/ViewTeacher_ModuleServlet")
 public class ViewTeacher_ModuleServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	private static final String DB_USER = "admin"; // Generiert durch ChatGPT
-	private static final String DB_PASSWORD = "admin"; // Generiert durch ChatGPT
+	private static final long serialVersionUID = 1L;
 
 	@Resource(lookup = "java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
-
-	/**
-	 * Default constructor.
-	 */
-	public ViewTeacher_ModuleServlet() {
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * 
-	 */
+	
+	//Methode holt sich alle Module eines Users
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
+		
 		String studiengangname = request.getParameter("studienfachId");
-		System.out.println("STUDIENGANGNAME: " + studiengangname);
 		String userId = request.getParameter("userid");
+	
 		ViewTeacher_StudiengaengeBean studiengang = new ViewTeacher_StudiengaengeBean();
 		studiengang.setStudiengangname(studiengangname);
 		studiengang.setUserId(userId);
+	
 		HttpSession session = request.getSession();
+		
 		List<ViewTeacher_ModuleBean> module = new ArrayList<>();
 
 		try (Connection con = ds.getConnection();) {
@@ -68,23 +61,13 @@ public class ViewTeacher_ModuleServlet extends HttpServlet {
 				modulForList.setStudiengangname(studiengangname);
 				modulForList.setUserId(userId);
 				module.add(modulForList);
-				// session.setAttribute("module", module);
 			}
 			session.setAttribute("module", module);
-			/*
-			 * if (resultSet.next()) { session.setAttribute("module", module); }
-			 */
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// System.out.println(module.get(0).toString());
-		// request.setAttribute("module", module);
-		// request.setAttribute("studienfachId", studiengangname);
-		// request.setAttribute("userid", userId);
-		// request.getRequestDispatcher("jsp/ViewTeacher_Module.jsp").forward(request,
-		// response);
-		// HttpSession session = request.getSession();
-		// session.setAttribute("module", module);
+
 		session.setAttribute("studienfachId", studiengang);
 		session.setAttribute("userid", userId);
 		System.out.println("Studiengang: " + studiengangname + " userid: " + userId);
@@ -92,11 +75,13 @@ public class ViewTeacher_ModuleServlet extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * Methode zum Anlegen eines neuen Moduls
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
+		
 		String studiengangname = request.getParameter("studienfachId");
 		String userId = request.getParameter("userid");
 		String modulname = request.getParameter("modul");
@@ -104,8 +89,6 @@ public class ViewTeacher_ModuleServlet extends HttpServlet {
 		if (studiengangname.isEmpty() || userId.isEmpty()) {
 			System.out.println("Fehler bei Übergabe der Attribute!");
 		}
-
-		System.out.println(modulname + studiengangname + userId);
 
 		ViewTeacher_ModuleBean modul = new ViewTeacher_ModuleBean();
 		modul.setModulname(modulname);
@@ -149,7 +132,8 @@ public class ViewTeacher_ModuleServlet extends HttpServlet {
 		response.sendRedirect("jsp/ViewTeacher_Module.jsp");
 
 	}
-
+	
+	// Methode zum Einfügen eines neuen Moduls in die Datenbank
 	private void insertModul(ViewTeacher_ModuleBean modul) {
 
 		boolean duplicateFound = checkDuplicateModul(modul);
@@ -168,7 +152,8 @@ public class ViewTeacher_ModuleServlet extends HttpServlet {
 			}
 		}
 	}
-
+	
+	// Methode zur Überprüfung, ob ein Modul bereits existiert
 	private boolean checkDuplicateModul(ViewTeacher_ModuleBean modul) {
 
 		boolean duplicateFound = false;

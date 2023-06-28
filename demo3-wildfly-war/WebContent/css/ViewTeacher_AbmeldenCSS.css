@@ -1,0 +1,11 @@
+/* erstellt durch Moritz Reindl */
+@charset "UTF-8";
+
+#abmelden {
+  color: #8BC34A;
+  text-decoration:none;
+}
+
+#abmelden:hover {
+  color: #689f38;
+}

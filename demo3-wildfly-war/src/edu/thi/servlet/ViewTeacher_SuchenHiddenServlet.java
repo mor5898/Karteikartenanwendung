@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ViewTeacher_SuchenHiddenServlet
+ * erstellt durch Moritz Reindl
  */
 @WebServlet("/ViewTeacher_SuchenHiddenServlet")
 public class ViewTeacher_SuchenHiddenServlet extends HttpServlet {
@@ -22,25 +22,16 @@ public class ViewTeacher_SuchenHiddenServlet extends HttpServlet {
 
 	@Resource(lookup="java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
-    /**
-     * Default constructor. 
-     */
-    public ViewTeacher_SuchenHiddenServlet() {
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * Servlet und doPost Methode dienen lediglich der Übermittlung der user-Bean
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
 		
 		String userId = request.getParameter("userid");    
 		RegisterBean user = new RegisterBean();

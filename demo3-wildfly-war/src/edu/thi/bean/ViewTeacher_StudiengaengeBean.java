@@ -3,7 +3,9 @@ package edu.thi.bean;
 import java.io.Serializable;
 
 public class ViewTeacher_StudiengaengeBean implements Serializable {
-    private int studiengangId;
+
+	private static final long serialVersionUID = 1L;
+	//private int studiengangId;
     private String studiengangname;
     private String userId;
 
@@ -22,7 +24,7 @@ public class ViewTeacher_StudiengaengeBean implements Serializable {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
+/*
 	public int getStudiengangId() {
         return studiengangId;
     }
@@ -30,5 +32,6 @@ public class ViewTeacher_StudiengaengeBean implements Serializable {
     public void setStudiengangId(int studienfachId) {
         this.studiengangId = studienfachId;
     }
+    */
 }
 

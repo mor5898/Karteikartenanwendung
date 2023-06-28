@@ -1,6 +1,7 @@
 /**
- *  erstellt von Moritz Reindl
+ *  generiert durch ChatGPT
  */
+// bis zur Markierung erstellt durch Moritz Reindl
 "use strict";
 
 document.addEventListener("DOMContentLoaded", init);
@@ -20,9 +21,8 @@ function init() {
   var buttonSaveModul = document.getElementById('buttonSaveModul');
   buttonSaveModul.addEventListener('click', saveModul);
 
-  /**
-  *  ab hier generiert durch ChatGPT bis zum Ende des Dokuments
-  */
+// Markierung!
+
   const buttonPopupClose = document.getElementById("buttonPopupClose");
   const popupDelete = document.getElementById("popupDelete");
 
