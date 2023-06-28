@@ -1,0 +1,219 @@
+@import "ViewTeacher_AbmeldenCSS.css";
+/* ab hier generiert durch ChatGPT */
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: #f5f5f5;
+  width: 200px;
+  height: 100%;
+  position: fixed;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.sidebar a:hover {
+  background-color: #ddd;
+}
+
+.sidebar .active {
+  background-color: #ccc;
+  font-weight: bold;
+}
+
+/* Decks */
+.decks {
+  grid-column: 1;
+  text-align: center;
+  align-self: center;
+}
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.h1 {
+  color: #333;
+  font-size: 28px;
+  font-family: Arial, sans-serif;
+}
+
+.buttonAdd {
+  background-color: #8BC34A; /* Hellgrün */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #689f38;
+  transform: scale(1.05);
+}
+
+
+.buttonSearch {
+  background-color: #8BC34A; /* Hellgrün */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.buttonSearch:hover {
+  background-color: #689F38; /* Dunkelgrün */
+}
+
+.list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.list td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+}
+
+.list td button[type="submit"] {
+  background-color: #8BC34A; /* Hellgrün */
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.list td button[type="submit"]:hover {
+  background-color: #689F38; /* Dunkelgrün */
+}
+
+/* Popup */
+.popup {
+  display: none;
+  place-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  position: relative;
+  animation: fade-in 0.3s ease-in-out;
+  font-family: Arial, sans-serif; /* Zeile hinzugefügt durch Moritz Reindl */
+}
+
+
+.popup h2 {
+  margin-top: 0;
+  font-family: Arial, sans-serif;
+}
+
+.popup input[type="text"] {
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.popup button {
+  background-color: #8BC34A; /* Hellgrün */
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.popup.fade-out {
+  animation: fade-out 0.3s ease-in-out;
+}
+
+.popup button:last-child {
+  margin-right: 0;
+}
+
+.popup button:hover {
+  background-color: #689F38; /* Dunkelgrün */
+}
+
+/* Paragraph */
+p {
+  font-family: Arial, sans-serif;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+#studiengaengeListe {
+  list-style: none;
+  padding: 0;
+}
+
+#studiengaengeListe li {
+  margin-bottom: 10px;
+}
+
+#studiengaengeListe input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+#studiengaengeListe label {
+  font-weight: bold;
+}
+
+.show-popup {
+  display: grid;
+  /* Andere CSS-Regeln, um das Popup anzuzeigen */
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px; /* Fügt einen Abstand von 10px unterhalb der Button-Container hinzu */
+}
+
+#studiengangDeleteForm {
+  text-align: center; /* Zentriert den Button im Formular */
+}

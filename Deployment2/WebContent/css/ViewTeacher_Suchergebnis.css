@@ -1,0 +1,57 @@
+@charset "UTF-8";
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f2f2f2;
+	margin-left: 25%;
+	padding: 0;
+}
+button
+{
+	border: none;
+  	color: white;
+  	padding: 7px 15px;
+  	width: 9em;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	margin: 4px 2px;
+  	cursor: pointer;
+  	background-color: #8BC34A;
+}
+.table {
+	display: none;
+}
+.h1 {
+	font-family: Arial, sans-serif;
+	font-size: 40px;
+	text-decoration: underline;
+}
+
+.suchtabelle table {
+	border-collapse: collapse;
+	width: 50em;
+	background: white;
+}
+
+.suchtabelle th, .suchtabelle td {
+	padding: 8px;
+	text-align: left;
+	font-family: Arial, sans-serif;
+	border-bottom: 4px solid #8BC34A;
+}
+
+.suchtabelle th {
+	background-color: #8BC34A;
+	color: #fff;
+}
+
+.suchtabelle tr:nth-child(even) {
+	background-color: white;
+}
+
+.suchtabelle button[type="submit"] {
+	width: 100px; /* Ändere die Breite nach Bedarf */
+	height: 30px; /* Ändere die Höhe nach Bedarf */
+	cursor: pointer;
+	font-family: Arial, sans-serif;
+}

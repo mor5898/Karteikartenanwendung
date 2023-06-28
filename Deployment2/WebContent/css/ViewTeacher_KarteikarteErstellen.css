@@ -1,0 +1,54 @@
+/* Erstellt durch Muahmmed Samil Turan*/
+@charset "UTF-8";
+body{
+	overflow: scroll;
+	font-family: "Arial", sans-serif;
+}
+.input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+.div {
+  border-radius: 5px;
+  border-style: solid;
+  border-color: #8BC34A;
+  background-color: #f2f2f2;
+  padding: 20px;
+  top: 100px;
+  font-family: "Arial", sans-serif;
+}
+.div2 {
+  border-radius: 5px;
+  background-color: #C0C0C0;
+  padding: 5px;
+  font-family: "Arial", sans-serif;
+}
+.buttonSaveQuestion {
+    width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Arial", sans-serif;
+  
+}
+.buttonCancel {
+	width: 100%;
+  background-color: #dc143c;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Arial", sans-serif;
+}

@@ -1,0 +1,149 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: #f2f2f2;
+	margin: 0;
+	padding: 0;
+}
+
+.bild {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+
+.mitte {
+	background-color: white;
+	width: 60%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	position: absolute;
+	left: 20%;
+	z-index: 1;
+}
+
+.mitte2 {
+	background-color: white;
+	width: 60%;
+	height: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	position: absolute;
+	top: 32%;
+	left: 18%;
+	z-index: 1;
+}
+
+.label {
+	font-family: Arial, sans-serif;
+	font-size: 30px;
+	position: absolute;
+	top: 16%;
+	left: 15%;
+}
+
+.feld {
+	position: absolute;
+	font-size: 27px;
+	top: 16%;
+	left: 43%;
+}
+
+.suchen {
+	position: absolute;
+	top: 25%;
+	left: 28%; background-color : #8BC34A; /* Hellgrün */
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	text-decoration: none;
+	position: absolute;
+	font-family: Arial, sans-serif;
+	font-size: 25px;
+	background-color: #8BC34A;
+}
+
+.zur {
+	position: absolute;
+	top: 25%;
+	left: 15%;
+	background-color: red; /* Hellgrün */
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	text-decoration: none;
+	position: absolute;
+	font-family: Arial, sans-serif;
+	font-size: 25px;
+}
+
+.zur2 {
+	text-decoration: none;
+	color: white;
+}
+
+.suchen:hover {
+	background-color: #689f38;
+	transform: scale(1.05);
+}
+
+.zur:hover {
+	background-color: red;
+	transform: scale(1.05);
+}
+
+.table {
+	display: none;
+}
+
+.h1 {
+	font-family: Arial, sans-serif;
+	font-size: 40px;
+	text-decoration: underline;
+}
+
+.suchtabelle table {
+	border-collapse: collapse;
+	width: 100%;
+	background: white;
+}
+
+.suchtabelle th, .suchtabelle td {
+	padding: 8px;
+	text-align: left;
+	font-family: Arial, sans-serif;
+	font-size: 25px;
+	border-bottom: 4px solid #8BC34A;
+}
+
+.suchtabelle th {
+	background-color: #8BC34A;
+	color: #fff;
+}
+
+.suchtabelle tr:nth-child(even) {
+	background-color: white;
+}
+
+.suchtabelle button[type="submit"] {
+	width: 100px; /* Ändere die Breite nach Bedarf */
+	height: 30px; /* Ändere die Höhe nach Bedarf */
+	cursor: pointer;
+	font-family: Arial, sans-serif;
+}
+.aus {
+	font-family: Arial, sans-serif;
+	font-size: 25px;
+	position: absolute;
+	top: 50%;
+	right: 36%;
+	font-weight: bold;
+	
+}

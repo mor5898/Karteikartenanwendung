@@ -1,0 +1,158 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: #f2f2f2;
+	margin: 0;
+	padding: 0;
+}
+
+.bild {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+
+.mitte {
+	background-color: white;
+	width: 60%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	position: absolute;
+	left: 20%;
+	z-index: 1;
+}
+
+.h1 {
+	position: absolute;
+	top: 28%;
+	font-family: Arial, sans-serif;
+	font-size: 40px;
+	text-decoration: underline;
+}
+
+.h2 {
+	font-family: Arial, sans-serif;
+	font-size: 40px;
+	text-decoration: underline;
+}
+
+.Suchen {
+	font-family: Arial, sans-serif;
+}
+
+.Decks {
+	background: white;
+	position: absolute;
+	top: 40%;
+}
+
+.Decks table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.Decks th, .Decks td {
+	padding: 8px;
+	text-align: left;
+	font-family: Arial, sans-serif;
+	font-size: 25px;
+	border-bottom: 4px solid #8BC34A;
+}
+
+.Decks th {
+	background-color: #8BC34A;
+	color: #fff;
+}
+
+.Decks tr:nth-child(even) {
+	background-color: #8BC34A;
+}
+
+.Decks .button {
+	text-align: right;
+}
+
+.suchebutt {
+	background-color: #8BC34A; /* Hellgrün */
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	text-decoration: none;
+	position: absolute;
+	top: 18%;
+	left: 37%;
+	font-family: Arial, sans-serif;
+	font-size: 27px;
+}
+
+.suchebutt:hover {
+	background-color: #689f38;
+	transform: scale(1.05);
+}
+/* Heading */
+
+/* List */
+.list {
+	border-collapse: collapse;
+}
+
+.list td {
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+	font-family: Arial, sans-serif;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 10px;
+	/* Fügt einen Abstand von 10px unterhalb der Button-Container hinzu */
+}
+
+.Decks button[type="submit"] {
+	width: 100px; /* Ändere die Breite nach Bedarf */
+	height: 30px; /* Ändere die Höhe nach Bedarf */
+	cursor: pointer;
+	font-family: Arial, sans-serif;
+}
+
+.abm {
+	background-color: red; /* Hellgrün */
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	text-decoration: none;
+	position: absolute;
+	font-family: Arial, sans-serif;
+	font-size: 25px;
+}
+
+.abm2 {
+	text-decoration: none;
+	color: white;
+	position: absolute;
+	top: 3%;
+	left: 3%;
+}
+
+.abm:hover {
+	background-color: red;
+	transform: scale(1.05);
+}
+
+.user {
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+	position: absolute;
+	top: 3%;
+	right: 3%;
+	font-weight: bold;
+	border: 1px solid black;
+	padding: 5px;
+}
