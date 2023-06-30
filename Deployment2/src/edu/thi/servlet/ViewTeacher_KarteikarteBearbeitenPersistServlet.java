@@ -1,4 +1,3 @@
-//Erstellt von Riza Dursun
 package edu.thi.servlet;
 
 import java.io.IOException;
@@ -57,6 +56,8 @@ public class ViewTeacher_KarteikarteBearbeitenPersistServlet extends HttpServlet
 		String korrekteAntwort = request.getParameter("korrekteAntwort");
 		String begruendungstext = request.getParameter("begruendungstext");
 		String titel = request.getParameter("titel");
+		String searchFlag = request.getParameter("searchFlag");
+		System.out.println(searchFlag);
 
 		ViewTeacher_StudiengaengeBean studiengang = new ViewTeacher_StudiengaengeBean();
 		studiengang.setStudiengangname(studiengangname);
@@ -93,13 +94,13 @@ public class ViewTeacher_KarteikarteBearbeitenPersistServlet extends HttpServlet
 
 			int affectedRows = stmt.executeUpdate();
 
-//			if (affectedRows > 0) {
-//				response.setStatus(HttpServletResponse.SC_OK);
-//				response.getWriter().println("Die Tabelle 'karteikarte' wurde erfolgreich aktualisiert.");
-//			} else {
-//				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-//				response.getWriter().println("Fehler beim Aktualisieren der Tabelle 'karteikarte'.");
-//			}
+			if (affectedRows > 0) {
+				response.setStatus(HttpServletResponse.SC_OK);
+				response.getWriter().println("Die Tabelle 'karteikarte' wurde erfolgreich aktualisiert.");
+			} else {
+				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				response.getWriter().println("Fehler beim Aktualisieren der Tabelle 'karteikarte'.");
+			}
 
 		} catch (SQLException e) {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -139,7 +140,13 @@ public class ViewTeacher_KarteikarteBearbeitenPersistServlet extends HttpServlet
 		session.setAttribute("modul", modul);
 		session.setAttribute("studienfachId", studiengang);
 		session.setAttribute("userid", userId);
+		
+		if (searchFlag != null && searchFlag.length() > 0) {
+			response.sendRedirect("jsp/ViewTeacher_Suchen.jsp");
+		} 
+		else {
 		response.sendRedirect("jsp/ViewTeacher_Karteikarten.jsp");
+		}
 
 	}
 

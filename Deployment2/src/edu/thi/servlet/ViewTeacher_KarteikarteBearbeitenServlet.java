@@ -1,4 +1,3 @@
-//Erstellt von Moritz Reindl
 package edu.thi.servlet;
 
 import java.io.IOException;
@@ -20,6 +19,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * Erstellt durch Moritz Reindl
+ */
 @WebServlet("/ViewTeacher_KarteikarteBearbeitenServlet")
 public class ViewTeacher_KarteikarteBearbeitenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,9 +35,10 @@ public class ViewTeacher_KarteikarteBearbeitenServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String studiengangname = request.getParameter("studienfachId");
+		//String studiengangname = request.getParameter("studienfachId");
 		String userId = request.getParameter("userid");
 		String karteikartenId = request.getParameter("karteikartenId");
+		String searchFlag = request.getParameter("searchFlag");
 
 		ViewTeacher_KarteikarteErstellenBean karteikarteForList = new ViewTeacher_KarteikarteErstellenBean();	
 
@@ -57,6 +60,7 @@ public class ViewTeacher_KarteikarteBearbeitenServlet extends HttpServlet {
 				String antwortDForList = resultSet.getString("antwortD");
 				String korrekteAntwortForList = resultSet.getString("korrekteAntwort");
 				String begrundungstextForList = resultSet.getString("begruendungstext");
+				String studiengangname = resultSet.getString("studiengangname");
 				
 				karteikarteForList.setModulname(modulnameForList);
 				karteikarteForList.setStudiengangname(studiengangname);
@@ -77,7 +81,14 @@ public class ViewTeacher_KarteikarteBearbeitenServlet extends HttpServlet {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("karteikarte", karteikarteForList);
+		session.setAttribute("searchFlag", searchFlag);
+		
+		if (searchFlag != null && searchFlag.length() > 0) {
+			response.sendRedirect("jsp/ViewTeacher_KarteikarteBearbeitenSearch.jsp");
+		} 
+		else {
 		response.sendRedirect("jsp/ViewTeacher_KarteikarteBearbeiten.jsp");
+		}
 	}
 
 }

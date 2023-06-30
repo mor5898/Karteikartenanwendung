@@ -14,6 +14,7 @@
 	<h1>Treffer Karteikarten für Schlagwort: ${param.schlagwort}</h1>
 	<form method="post" action="../ViewTeacher_KarteikarteBearbeitenServlet">
 		<button type="submit" value="zur&#252;ck" formaction="ViewTeacher_Suchen.jsp">Zur&#252;ck</button>
+		<input type="hidden" name="searchFlag" value="true">
 		<div class ="suchtabelle">
 			<table>
 				<tr>
@@ -29,8 +30,6 @@
 						value="${currentKarteikarte.studiengang}">
 					<input type="hidden" name="modulname"
 						value="${currentKarteikarte.modul}">
-					<input type="hidden" name="karteikartenId"
-						value="${currentKarteikarte.karteikarteID}">
 					<input type="hidden" name="fragentext"
 						value="${currentKarteikarte.fragentext}">
 					<tr>
@@ -39,7 +38,7 @@
 						<td>${currentKarteikarte.karteikarteID}</td>
 						<td>${currentKarteikarte.titel}</td>
 						<td>
-							<button type="submit" name="titel" id="karteikarte.titel" value="${currentKarteikarte.titel}">Anzeigen</button>
+							<button type="submit" name="karteikartenId" id="karteikarte.titel" value="${currentKarteikarte.karteikarteID}">Anzeigen</button>
 						</td>
 					</tr>
 				</c:forEach>

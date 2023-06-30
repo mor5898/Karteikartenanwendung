@@ -26,9 +26,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
-/** 
- * Erstellt durch Riza Dursun und Fatih Doruk
- */
 @WebServlet("/ViewTeacher_KarteikarteErstellenServlet")
 //Hier diese Annotation übergeben
 @MultipartConfig
@@ -54,7 +51,7 @@ public class ViewTeacher_KarteikarteErstellenServlet extends HttpServlet {
 		
 		String[] generatedKeys = new String[] {"id"};
 		
-		try(Connection con = ds.getConnection();																																														//Hier wurde das Feld bilddatei ergänzt und ein ?
+		try(Connection con = ds.getConnection();																																														
 				PreparedStatement pstmt = con.prepareStatement("INSERT INTO karteikarte (karteikartenId, modulname, studiengangname, userId,fragentext, antwortA, antwortB, antwortC, antwortD, korrekteAntwort, begruendungstext, titel, bilddatei) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", generatedKeys)) {
             
 			// Code ab hier bis zum Ende der Markierung generiert durch ChatGPT
