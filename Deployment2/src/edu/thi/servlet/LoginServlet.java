@@ -1,3 +1,4 @@
+//Erstellt von Samil Muhammed Turan
 package edu.thi.servlet;
 
 import java.io.IOException;
@@ -42,9 +43,11 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Inhalt dieser Methode wurde erstellt von Riza Dursun
 		
 	}
+	//Inhalt dieser Methode wurde erstellt von Riza Dursun
+	// Methode zum aktualisieren der von diesem Servlet aufgerufene Seite.
+	// Sie aktualisiert die hinzugefügten Decks des Studenten auf der Home Seite.
 	List<ViewTeacher_ModuleBean> suchen(String id) throws ServletException
 	{
 		
@@ -86,13 +89,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		//Überprüfung auf eingeschaltete Cookies
-		boolean cookiesEnabled = request.isRequestedSessionIdFromCookie();
-		if(!cookiesEnabled) {
-			 String nocookies = "Cookies sind nicht aktiv. Aktivieren Sie Cookies, um den Login durchzuführen";
-	    	 request.setAttribute("text", nocookies);
-	    	 request.getRequestDispatcher("jsp/Login.jsp").forward(request, response);
-		}
+		
 		String userid = request.getParameter("userid");
 		String password = request.getParameter("password");
 		//Der folgende Teil wurde erstellt von Moritz Reindl

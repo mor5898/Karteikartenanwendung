@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Quelle:tutorialspoint.com -->
+	<script type="text/javascript" src="../javascript/RegisterCookieCheck.js"></script>
 	<meta charset="utf-8">
 	<title>Register page</title>
 	<link rel="stylesheet" href="../css/Login.css">
@@ -23,9 +25,11 @@
     		<option value="Dozent">Dozent</option>
     		<option value="Student">Student</option>
    		 </select>
-  		<br><br>
+  		<br>
     	<input type="submit" value="Registrieren"><br>
     	<label><a href="../index.html">Zurück zur Anmeldung</a></label>
+    	<noscript style="color:red;">Sie haben JavaScript deaktivert! Bitte aktivieren Sie Java Script!</noscript><br><!--Warnung bei blockiertem JavaScript-->
+		<p style="color:red;" id="check"></p> 
 	</form>
 </body>
 </html>

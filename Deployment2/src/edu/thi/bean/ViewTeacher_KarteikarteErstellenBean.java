@@ -1,5 +1,5 @@
-package edu.thi.bean;
 //Erstellt durch Riza Dursun und Fatih Doruk
+package edu.thi.bean;
 import java.io.Serializable;
 
 public class ViewTeacher_KarteikarteErstellenBean implements Serializable {
@@ -17,7 +17,6 @@ public class ViewTeacher_KarteikarteErstellenBean implements Serializable {
 	private String modulname;
 	private String studiengangname;
 	private String userId;
-	// Hier muss noch dieses Attribut ergänzt werden
 	private byte[] bild;
 	
 	public String getUserId() {
@@ -51,10 +50,6 @@ public class ViewTeacher_KarteikarteErstellenBean implements Serializable {
 	public void setStudiengangname(String studiengangname) {
 		this.studiengangname = studiengangname;
 	}
-	/*
-	 * public byte[] getBild() { return bild; } public void setBild(byte[] bild) {
-	 * this.bild = bild; }
-	 */
 	public String getantwortA() {
 		return antwortA;
 	}

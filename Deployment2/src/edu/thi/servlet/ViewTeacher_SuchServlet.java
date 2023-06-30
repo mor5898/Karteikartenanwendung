@@ -1,3 +1,4 @@
+//Erstellt von Fatih Doruk
 package edu.thi.servlet;
 
 import jakarta.servlet.http.HttpServlet;
@@ -20,9 +21,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * erstellt durch Fatih Doruk
- */
 @WebServlet("/ViewTeacher_SuchServlet")
 public class ViewTeacher_SuchServlet extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;

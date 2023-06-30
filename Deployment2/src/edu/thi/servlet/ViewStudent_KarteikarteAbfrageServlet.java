@@ -1,3 +1,4 @@
+//Erstellt von Fatih Doruk
 package edu.thi.servlet;
 
 import edu.thi.bean.ViewStudent_KarteikarteAbfrageBean;
@@ -30,7 +31,8 @@ public class ViewStudent_KarteikarteAbfrageServlet extends HttpServlet {
 
 	@Resource(lookup="java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
-	
+	//Diese Methode bekommt als Eingabe den Studiengang, das Modul und den dazugehörigen Dozenten und sucht sich alle Karteikarten 
+	//dieses Moduls aus.
 	List<ViewStudent_KarteikarteAbfrageBean> suche (String studiengang, String modul, String dozent) throws ServletException
 	{
 		int count = 1;
@@ -89,13 +91,6 @@ public class ViewStudent_KarteikarteAbfrageServlet extends HttpServlet {
 		
 		return karteikarten;
 	}
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

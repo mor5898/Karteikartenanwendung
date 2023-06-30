@@ -1,3 +1,4 @@
+//Erstellt von Fatih Doruk
 package edu.thi.servlet;
 
 import edu.thi.bean.ViewStudent_KarteikarteAbfrageBean;
@@ -28,7 +29,8 @@ public class ViewStudent_KarteikarteNaechsteFrageServlet extends HttpServlet {
 
 	@Resource(lookup="java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
-	
+	//Diese Methode bekommt als Eingabe den Studiengang, das Modul und den dazugehörigen Dozenten und sucht sich alle Karteikarten 
+	//dieses Moduls aus.
 	List<ViewStudent_KarteikarteAbfrageBean> suche (String studiengang, String modul, String dozent, int aktCount, int anzahlRichtig, int anzahlFalsch) throws ServletException
 	{
 		int count = 1;
@@ -65,10 +67,11 @@ public class ViewStudent_KarteikarteNaechsteFrageServlet extends HttpServlet {
 						karteikarteBean.setCount(count);
 						karteikarteBean.setAnzahlRichtig(anzahlRichtig);
 						karteikarteBean.setAnzahlFalsch(anzahlFalsch);
-						karteikarteBean.setBildFlag(false);
-						if(rs.getBlob("bilddatei") != null /*|| rs.getBlob("bilddatei").length() != 0*/)
+						karteikarteBean.setBildFlag(true);
+						
+						if(rs.getBlob("bilddatei") == null || rs.getBlob("bilddatei").length() == 0)
 						{
-							karteikarteBean.setBildFlag(true);
+							karteikarteBean.setBildFlag(false);
 						}
 						
 						if(aktCount+1 == count)
@@ -86,13 +89,6 @@ public class ViewStudent_KarteikarteNaechsteFrageServlet extends HttpServlet {
 			}
 			return karteikarten;
 	}
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -1,3 +1,4 @@
+//Erstellt von Moritz Reindl
 package edu.thi.servlet;
 
 import java.io.IOException;
@@ -20,9 +21,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-/**
- * Erstellt durch Moritz Reindl
- */
 @WebServlet("/ViewTeacher_ModuleServlet")
 public class ViewTeacher_ModuleServlet extends HttpServlet {
 

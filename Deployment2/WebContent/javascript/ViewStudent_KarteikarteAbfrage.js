@@ -1,3 +1,4 @@
+/*Erstellt von Fatih Doruk*/
 	"use strict";
 	document.addEventListener("DOMContentLoaded", init);
 	function init()

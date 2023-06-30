@@ -1,3 +1,4 @@
+//Dokument erstellt durch Fatih Doruk
 package edu.thi.bean;
 import java.io.Serializable;
 

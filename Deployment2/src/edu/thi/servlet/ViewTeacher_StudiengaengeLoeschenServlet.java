@@ -1,3 +1,4 @@
+//Erstellt von Muhammed Samil Turan
 package edu.thi.servlet;
 
 import java.io.IOException;
@@ -20,9 +21,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-/**
- * erstellt durch Samil Turan
- */
 @WebServlet("/ViewTeacher_StudiengaengeLoeschenServlet")
 public class ViewTeacher_StudiengaengeLoeschenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

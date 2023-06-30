@@ -1,3 +1,4 @@
+//Erstellt von Fatih Doruk
 package edu.thi.servlet;
 
 import java.io.ByteArrayOutputStream;
@@ -31,7 +32,16 @@ import jakarta.servlet.http.Part;
 @WebServlet("/ViewTeacher_KarteikarteErstellenServlet")
 //Hier diese Annotation übergeben
 @MultipartConfig
-
+(
+		//>Größe der einzelnen Dateien (5MB)
+		maxFileSize=1024*1024*5,
+		//>Größe der einzelnen Dateien (25 MB)
+		maxRequestSize=1024*1024*5*5, 
+		//>Angabe des Pfades
+		location= "/tmp",
+		//>falls Datei größer als angegeben, Auslagerung auf Platte, ansonsten auf HS (1 MB)
+		fileSizeThreshold=1024*1024
+)
 public class ViewTeacher_KarteikarteErstellenServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -83,16 +93,12 @@ public class ViewTeacher_KarteikarteErstellenServlet extends HttpServlet {
 			pstmt.setString(10, form.getkorrekteAntwort());
 			pstmt.setString(11, form.getbegruendung());
 			pstmt.setString(12, form.gettitel());
-			//Hier muss diese Methode für pstmt ergänzt werden
 			pstmt.setBinaryStream(13, filepart.getInputStream());
 			pstmt.executeUpdate();
-			
 			
 			} catch (Exception ex) {
 				throw new ServletException(ex.getMessage());
 			}
-	
-		
 	}
 
 	/**

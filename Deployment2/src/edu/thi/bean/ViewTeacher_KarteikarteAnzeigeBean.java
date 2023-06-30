@@ -1,6 +1,6 @@
+//Dokument erstellt durch Riza Dursun
 package edu.thi.bean;
 import java.io.Serializable;
-//Erstellt durch Riza Dursun und Fatih Doruk
 public class ViewTeacher_KarteikarteAnzeigeBean implements Serializable
 {
 	

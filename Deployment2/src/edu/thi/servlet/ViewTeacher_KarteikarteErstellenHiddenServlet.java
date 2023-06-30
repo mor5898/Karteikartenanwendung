@@ -1,3 +1,4 @@
+//Erstellt von Moritz Reindl
 package edu.thi.servlet;
 
 import java.io.IOException;
@@ -10,16 +11,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-/**
- * Erstellt durch Moritz Reindl
- */
 @WebServlet("/ViewTeacher_KarteikarteErstellenHiddenServlet")
 public class ViewTeacher_KarteikarteErstellenHiddenServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * dient lediglich zur Weiterleitung der Parameter
+	 * dient lediglich zur Weiterleitung der Parameter zum Erstellen von Karteikarten und wird von der JSP zum Verwalten der 
+	 * Karteikarte (Anzeige aller Karteikarten eines Moduls) aufgerufen.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String studiengangname = request.getParameter("studienfachId");

@@ -1,4 +1,5 @@
-@charset "ISO-8859-1";
+/* Ertsellt von Riza Dursun */
+@charset "UTF-8";
 
 body {
 	background-color: #f2f2f2;
@@ -57,7 +58,7 @@ body {
 .suchen {
 	position: absolute;
 	top: 25%;
-	left: 28%; background-color : #8BC34A; /* Hellgrün */
+	left: 28%; background-color : #8BC34A; /* HellgrÃ¼n */
 	color: #fff;
 	border: none;
 	padding: 10px 20px;
@@ -73,7 +74,7 @@ body {
 	position: absolute;
 	top: 25%;
 	left: 15%;
-	background-color: red; /* Hellgrün */
+	background-color: red; /* HellgrÃ¼n */
 	color: #fff;
 	border: none;
 	padding: 10px 20px;
@@ -133,8 +134,8 @@ body {
 }
 
 .suchtabelle button[type="submit"] {
-	width: 100px; /* Ändere die Breite nach Bedarf */
-	height: 30px; /* Ändere die Höhe nach Bedarf */
+	width: 100px; /* Ã„ndere die Breite nach Bedarf */
+	height: 30px; /* Ã„ndere die HÃ¶he nach Bedarf */
 	cursor: pointer;
 	font-family: Arial, sans-serif;
 }

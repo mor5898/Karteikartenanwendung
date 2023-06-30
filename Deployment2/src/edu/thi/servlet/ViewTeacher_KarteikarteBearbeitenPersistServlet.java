@@ -1,3 +1,4 @@
+//Erstellt von Riza Dursun
 package edu.thi.servlet;
 
 import java.io.IOException;
@@ -92,13 +93,13 @@ public class ViewTeacher_KarteikarteBearbeitenPersistServlet extends HttpServlet
 
 			int affectedRows = stmt.executeUpdate();
 
-			if (affectedRows > 0) {
-				response.setStatus(HttpServletResponse.SC_OK);
-				response.getWriter().println("Die Tabelle 'karteikarte' wurde erfolgreich aktualisiert.");
-			} else {
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				response.getWriter().println("Fehler beim Aktualisieren der Tabelle 'karteikarte'.");
-			}
+//			if (affectedRows > 0) {
+//				response.setStatus(HttpServletResponse.SC_OK);
+//				response.getWriter().println("Die Tabelle 'karteikarte' wurde erfolgreich aktualisiert.");
+//			} else {
+//				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//				response.getWriter().println("Fehler beim Aktualisieren der Tabelle 'karteikarte'.");
+//			}
 
 		} catch (SQLException e) {
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);

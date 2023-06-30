@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="popup-overlay"></div>
 		<p>
-			<a id="abmelden" href="../index.html">ausloggen</a>
+			<a id="abmelden" href="../index.html">Abmelden</a>
 		</p>
 		<div class="decks">
 			<h1 class="h1">Meine Studieng&#228;nge</h1>

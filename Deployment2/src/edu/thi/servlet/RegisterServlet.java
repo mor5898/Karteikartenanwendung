@@ -1,3 +1,4 @@
+//Erstellt von Muhammed Samil Turan
 package edu.thi.servlet;
 
 import java.io.IOException;
@@ -26,34 +27,12 @@ public class RegisterServlet extends HttpServlet {
 	
 	@Resource(lookup="java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
-    /**
-     * Default constructor. 
-     */
-    public RegisterServlet() {
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		//Überprüfung auf eingeschaltete Cookies
-		 boolean cookiesEnabled = request.isRequestedSessionIdFromCookie();
-		 if(!cookiesEnabled) {
-			 String nocookies = "Cookies sind nicht aktiv. Aktivieren Sie Cookies, um die Registrierung durchzuführen";
-	    	 request.setAttribute("text", nocookies);
-	    	 request.getRequestDispatcher("jsp/Register.jsp").forward(request, response);
-		 }
 		//Bean zum Eintrag der Registrierung in die DB
 		RegisterBean form = new RegisterBean();
 		form.setEmail(request.getParameter("email"));
@@ -65,7 +44,6 @@ public class RegisterServlet extends HttpServlet {
 		RegisterBean register = search(form.getUserid());
 		//Bean zur Überprüfung auf bereits benutzte Email über DB Suche
 		RegisterBean email = searchemail(form.getEmail());
-		
 		
 		// Regexerstellung zur Überprüfung von Passwortbedingungen
 		String password = form.getPassword();
@@ -82,9 +60,9 @@ public class RegisterServlet extends HttpServlet {
 	    Pattern SpecialCharpattern = Pattern.compile(specialCharRegex);
 	    Matcher SpecialCharmatcher = SpecialCharpattern.matcher(password);
 	    
-
 	    //Grundgerüst isValid und if-Anweisungen erstellt von ChatGPT
 	    boolean isValid = true;
+	    
 	    //Überprüfung auf bereits existierenden User
 	     if (register.getUserid()!=null) {
 	    	 isValid = false;
@@ -136,10 +114,6 @@ public class RegisterServlet extends HttpServlet {
 			pstmt.setString(4, form.getRole());
 			pstmt.executeUpdate();
 			
-//			ResultSet rs = pstmt.getGeneratedKeys();
-//			while (rs.next()) {
-//				form.setUserid(rs.getLong(1));
-//			}
 		} catch (Exception ex) {
 			throw new ServletException(ex.getMessage());
 		}

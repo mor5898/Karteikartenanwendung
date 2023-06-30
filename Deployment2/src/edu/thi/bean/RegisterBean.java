@@ -1,4 +1,4 @@
-//Erstellt durch Muhammed Samil Turan
+//Dokument erstellt durch Muhammed Samil Turan
 package edu.thi.bean;
 import java.io.Serializable;
 public class RegisterBean implements Serializable{

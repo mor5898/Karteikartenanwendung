@@ -1,3 +1,4 @@
+//Erstellt von Fatih Doruk
 package edu.thi.servlet;
 
 import jakarta.servlet.http.HttpServlet;
@@ -18,9 +19,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * erstellt durch Fatih Doruk
- */
 @WebServlet("/ViewTeacher_KarteikarteErstellenBildServlet")
 public class ViewTeacher_KarteikarteErstellenBildServlet extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
@@ -29,7 +27,7 @@ public class ViewTeacher_KarteikarteErstellenBildServlet extends HttpServlet imp
 	private DataSource ds;
 	
 	/**
-	 * Methode lädt eine Bilddatei aus der Datenbank
+	 * Methode lädt eine Bilddatei aus der Datenbank für die Abfrage einer Karteikarte.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

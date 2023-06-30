@@ -1,3 +1,4 @@
+//Erstellt durch Riza Dursun
 package edu.thi.servlet;
 
 import java.io.IOException;
@@ -29,18 +30,11 @@ public class ViewStudent_DecksLoeschenServlet extends HttpServlet {
 	@Resource(lookup = "java:jboss/datasources/MySqlThidbDS")
 	private DataSource ds;
 
-	/**
-	 * Default constructor.
-	 */
-	public ViewStudent_DecksLoeschenServlet() {
-		// TODO Auto-generated constructor stub
-	}
-
 	// Diese Methode löscht in der Tabelle modulprostudent die ausgewählten Module
 	// und die jeweiligen Studiengangname, DozentId und die StudentId
 	private void delete(String id, String doz, String studie, String modul) throws ServletException {
 
-		try (Connection con = ds.getConnection(); // Hier wurde das Feld bilddatei ergänzt und ein ?
+		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(
 						"DELETE FROM modulprostudent WHERE student_id = ? AND dozent_id=? AND studiengangname=? AND modulname = ?")) {
 
@@ -96,7 +90,6 @@ public class ViewStudent_DecksLoeschenServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
 
@@ -113,10 +106,4 @@ public class ViewStudent_DecksLoeschenServlet extends HttpServlet {
 
 		response.sendRedirect("jsp/ViewStudent_Home.jsp");
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-
 }

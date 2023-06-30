@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!-- Dieses Dokument wurde erstellt durch Moritz Reindl -->
 <!-- Jsp Seite zum Verwalten der Karteikartein eines Moduls -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@
 <body>
 	<div class="container">
 		<p>
-			<a id="abmelden" href="../index.html">ausloggen</a>
+			<a id="abmelden" href="../index.html">Abmelden</a>
 		</p>
 		<div class="decks">
 			<h1 class="h1">
