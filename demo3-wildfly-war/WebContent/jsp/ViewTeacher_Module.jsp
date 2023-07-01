@@ -15,7 +15,7 @@
 <body>
 	<div class="container">
 		<p>
-			<a id="abmelden" href="../index.html">ausloggen</a>
+			<a id="abmelden" href="../index.html">Abmelden</a>
 		</p>
 		<div class="decks">
 			

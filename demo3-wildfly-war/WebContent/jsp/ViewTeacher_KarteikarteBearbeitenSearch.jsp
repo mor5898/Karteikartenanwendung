@@ -14,15 +14,14 @@
 
 
 	<h1 class="h1">
-		<a href="ViewTeacher_Studiengaenge.jsp">Meine Studieng&auml;nge</a>: <a
-			href="ViewTeacher_Module.jsp">${karteikarte.studiengangname}</a>:
+		Meine Studieng&auml;nge: ${karteikarte.studiengangname}</a>:
 		${karteikarte.modulname}
 	</h1>
 	<div class="div">
 		<form method="post"
 			action="../ViewTeacher_KarteikarteBearbeitenPersistServlet"
 			enctype="multipart/form-data">
-			
+			<input type="hidden" name="searchFlag" value="true">
 			<input type="hidden" name="userid" value="${karteikarte.userId}">
 			<input type="hidden" name="karteikartenId"
 				value="${karteikarte.karteikartenId}"> <input type="hidden"
@@ -62,7 +61,7 @@
 
 		</form>
 		</div>
-	<form action ="ViewTeacher_Karteikarten.jsp">
+	<form action ="ViewTeacher_Suchen.jsp">
 			<input type="submit" value="Abbrechen" class="buttonCancel">
 	</form>
 		<p>Eingeloggt: ${karteikarte.userId}</p>

@@ -7,7 +7,7 @@
 	<!-- Dieses Dokument wurde erstellt durch Moritz Reindl und Fatih Doruk-->
 	<head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
-	<link rel="stylesheet" href="../css/Sidebar.css">
+	<link rel="stylesheet" href="../css/ViewTeacher_Suchen.css">
 	</head>
 	<body>
 		<button type="submit" value="zur&#252;ck" >
@@ -19,10 +19,10 @@
 				<input type="hidden" name="userid" value="${user.userid}">
 				<fieldset><legend>Decks suchen</legend>
 					<div class="grid-item">Titel der Karteikarte:</div>
-					  	<input type="text" id="schlagwort" name="schlagwort" placeholder="Hier SchlagwÃ¶rter eingeben" maxlength="50"> 
+					  	<input type="text" id="schlagwort" name="schlagwort" placeholder="Hier Schlagw&ouml;rter eingeben" maxlength="50"> 
 					<div class="grid-item">
 						<button name="submit" type="submit">Suche starten</button>
-						<button name="reset" type="reset">ZurÃ¼cksetzen</button>
+						<button name="reset" type="reset">Zur&uuml;cksetzen</button>
 					</div>
 				</fieldset>
 			</form>

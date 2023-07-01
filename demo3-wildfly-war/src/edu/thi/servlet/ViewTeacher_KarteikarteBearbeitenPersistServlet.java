@@ -56,6 +56,8 @@ public class ViewTeacher_KarteikarteBearbeitenPersistServlet extends HttpServlet
 		String korrekteAntwort = request.getParameter("korrekteAntwort");
 		String begruendungstext = request.getParameter("begruendungstext");
 		String titel = request.getParameter("titel");
+		String searchFlag = request.getParameter("searchFlag");
+		System.out.println(searchFlag);
 
 		ViewTeacher_StudiengaengeBean studiengang = new ViewTeacher_StudiengaengeBean();
 		studiengang.setStudiengangname(studiengangname);
@@ -138,7 +140,13 @@ public class ViewTeacher_KarteikarteBearbeitenPersistServlet extends HttpServlet
 		session.setAttribute("modul", modul);
 		session.setAttribute("studienfachId", studiengang);
 		session.setAttribute("userid", userId);
+		
+		if (searchFlag != null && searchFlag.length() > 0) {
+			response.sendRedirect("jsp/ViewTeacher_Suchen.jsp");
+		} 
+		else {
 		response.sendRedirect("jsp/ViewTeacher_Karteikarten.jsp");
+		}
 
 	}
 

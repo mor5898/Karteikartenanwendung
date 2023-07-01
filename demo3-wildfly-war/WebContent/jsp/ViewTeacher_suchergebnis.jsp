@@ -1,31 +1,21 @@
+<!-- Erstellt von Fatih Doruk -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<base href="${pageContext.request.requestURI}" />
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../css/Sidebar.css">
-<title>Suchergebnis</title>
-<style>
-table, th, td {
-	border: 1px solid;
-	border-collapse: collapse;
-	padding: 5px;
-	text-align: center;
-}
-</style>
+	<base href="${pageContext.request.requestURI}" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../css/ViewTeacher_Suchergebnis.css">
+	<title> Suchergebnis Karteikarten</title>
 </head>
 <body>
-	<h2>Suche war erfolgreich</h2>
-	<h3>Gelesene Daten</h3>
-	<button type="submit" value="zur&#252;ck">
-		<a href="ViewTeacher_Suchen.jsp">zur&#252;ck</a>
-	</button>
-	<form method="post"
-		action="../ViewTeacher_KarteikarteBearbeitenServlet">
-		<div>
+	<h1>Treffer Karteikarten für Schlagwort: ${param.schlagwort}</h1>
+	<form method="post" action="../ViewTeacher_KarteikarteBearbeitenServlet">
+		<button type="submit" value="zur&#252;ck" formaction="ViewTeacher_Suchen.jsp">Zur&#252;ck</button>
+		<input type="hidden" name="searchFlag" value="true">
+		<div class ="suchtabelle">
 			<table>
 				<tr>
 					<th>Studiengang</th>
@@ -40,8 +30,6 @@ table, th, td {
 						value="${currentKarteikarte.studiengang}">
 					<input type="hidden" name="modulname"
 						value="${currentKarteikarte.modul}">
-					<input type="hidden" name="karteikartenId"
-						value="${currentKarteikarte.karteikarteID}">
 					<input type="hidden" name="fragentext"
 						value="${currentKarteikarte.fragentext}">
 					<tr>
@@ -49,9 +37,9 @@ table, th, td {
 						<td>${currentKarteikarte.modul}</td>
 						<td>${currentKarteikarte.karteikarteID}</td>
 						<td>${currentKarteikarte.titel}</td>
-						<td><button type="submit" name="titel" id="karteikarte.titel"
-								value="${currentKarteikarte.titel}" />Anzeigen
-							</button></td>
+						<td>
+							<button type="submit" name="karteikartenId" id="karteikarte.titel" value="${currentKarteikarte.karteikarteID}">Anzeigen</button>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

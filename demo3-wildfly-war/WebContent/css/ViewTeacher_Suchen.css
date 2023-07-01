@@ -1,0 +1,76 @@
+/*Erstellt von Fatih Doruk */
+@charset "UTF-8";
+body
+{
+	width: 35em;
+	font-family: Arial, sans-serif;
+	display: inline-block;
+ 	text-align: center;
+ 	margin-left: 33%;
+ 	margin-top: 2%;
+}
+button
+{
+	border: none;
+  	color: white;
+  	padding: 7px 15px;
+  	width: 9em;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	margin: 4px 2px;
+  	cursor: pointer;
+  	background-color: #8BC34A;
+}
+fieldset
+{
+	display: inline-block;
+	width: 35em;
+	border: 3px solid #8BC34A;
+	border-radius: 5px;
+  	padding: 10;
+  	margin: 0 auto;
+  	box-shadow: 0 0 10px rgba(0,0,0, 0.2);
+}
+legend
+{
+	background: #8BC34A;
+	padding:0.2em;
+	border: 2px solid #8BC34A;
+	border-radius: 5px;
+	color: white;
+}
+a
+{
+	color: white;
+	font-family: Arial, sans-serif;
+	text-decoration: none;
+}
+div
+{
+	padding: 0.2em;
+}
+input[type=text] 
+{
+   width: 200px;
+}
+.eingeloggt
+{
+	/* text-align: left; */
+}
+.zurueckButton
+{
+	float: left;
+}
+.buttonContainer
+{
+	align-items: center;
+}
+/* #submit
+{
+	float: left;
+}
+#reset
+{
+	float: right;
+} */

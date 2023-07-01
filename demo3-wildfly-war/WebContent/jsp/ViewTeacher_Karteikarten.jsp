@@ -14,7 +14,7 @@
 <body>
 	<div class="container">
 		<p>
-			<a id="abmelden" href="../index.html">ausloggen</a>
+			<a id="abmelden" href="../index.html">Abmelden</a>
 		</p>
 		<div class="decks">
 			<h1 class="h1">
@@ -81,14 +81,12 @@
 				<table class="list">
 					<c:forEach var="karteikarte" items="${karteikarten}">
 						<tr>
-							<input type="hidden" name="karteikartenId"
-								value="${karteikarte.karteikartenId}">
 							<input type="hidden" name="fragentext"
 								value="${karteikarte.fragentext}">
 							<td>${karteikarte.titel}</td>
 							<td>${karteikarte.fragentext}</td>
-							<td><button type="submit" name="titel"
-									id="karteikarte.titel" value="${karteikarte.titel}" />Frage
+							<td><button type="submit" name="karteikartenId"
+									id="karteikarte.titel" value="${karteikarte.karteikartenId}" />Frage
 								bearbeiten</button></td>
 						</tr>
 						</tr>
