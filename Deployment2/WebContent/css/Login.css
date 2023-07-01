@@ -12,14 +12,14 @@
   overflow: auto;
   align-items: center;
   font-family: "Arial", sans-serif;
-  font-size:25px;
+  font-size:130%;
 }
-
-
-
 body {
   margin: 0;
   font-family: "Arial", sans-serif;
-  font-size:25px;
+  font-size:130%;
   background-color: #3cb371;
+}
+.errors{
+	color:red
 }

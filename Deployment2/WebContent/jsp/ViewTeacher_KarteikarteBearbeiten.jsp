@@ -1,9 +1,9 @@
+<!-- Dieses Dokument wurde erstellt durch Fatih Doruk-->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<!-- Dieses Dokument wurde erstellt durch Fatih Doruk und Riza Dursun -->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -28,15 +28,15 @@
 				value="${karteikarte.karteikartenId}"> <input type="hidden"
 				name="studienfachId" value="${karteikarte.studiengangname}">
 			<input type="hidden" name="modulname"
-				value="${karteikarte.modulname}"> <label for="titel">Titel:
-	</div>
+				value="${karteikarte.modulname}"> <label for="titel">Titel:</label><br>
+	
 	<input type="text" id="titel" name="titel" value="${karteikarte.titel}"
-		required maxlength="50">
-	<label for="fragentext">Frage:
-		</div> <input type="text" id="fragentext" name="fragentext"
-		value="${karteikarte.fragentext}" required maxlength="250"> <label
-		for="bilddateilabel">Bilddatei (optional):</label><br> <input
-		type="file" name="image" id="image" accept="image/*" multiple>
+		required maxlength="50"><br>
+	<label for="fragentext">Frage:</label><br>
+		 <input type="text" id="fragentext" name="fragentext"
+		value="${karteikarte.fragentext}" required maxlength="250"><br>
+		<label for="bilddateilabel">Bilddatei (optional):</label><br> 
+		<input type="file" name="image" id="image" accept="image/*" multiple>
 		<div class="div2">
 			<label id="answer"><b>Antwortm&#246;glichkeiten:</b></label><br>
 			<label for="antwortA">Antwort A:</label> <input type="text"
@@ -62,10 +62,11 @@
 		<button type="submit" name="submit" class="buttonSaveQuestion">Speichern</button>
 
 		</form>
-		</div>
+		
 	<form action ="ViewTeacher_Karteikarten.jsp">
 			<input type="submit" value="Abbrechen" class="buttonCancel">
 	</form>
+	</div>
 		<p>Eingeloggt: ${karteikarte.userId}</p>
 </body>
 </html>

@@ -1,9 +1,9 @@
+<!-- Dieses Dokument wurde erstellt durch Riza Dursun -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<!-- Dieses Dokument wurde erstellt durch Fatih Doruk und Riza Dursun -->
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -14,7 +14,7 @@
 
 
 	<h1 class="h1">
-		Meine Studieng&auml;nge: ${karteikarte.studiengangname}</a>:
+		<a>Meine Studieng&auml;nge: ${karteikarte.studiengangname}</a>:
 		${karteikarte.modulname}
 	</h1>
 	<div class="div">
@@ -23,19 +23,17 @@
 			enctype="multipart/form-data">
 			<input type="hidden" name="searchFlag" value="true">
 			<input type="hidden" name="userid" value="${karteikarte.userId}">
-			<input type="hidden" name="karteikartenId"
-				value="${karteikarte.karteikartenId}"> <input type="hidden"
+			<input type="hidden" name="karteikartenId" value="${karteikarte.karteikartenId}"> <input type="hidden"
 				name="studienfachId" value="${karteikarte.studiengangname}">
-			<input type="hidden" name="modulname"
-				value="${karteikarte.modulname}"> <label for="titel">Titel:
-	</div>
-	<input type="text" id="titel" name="titel" value="${karteikarte.titel}"
-		required maxlength="50">
-	<label for="fragentext">Frage:
-		</div> <input type="text" id="fragentext" name="fragentext"
-		value="${karteikarte.fragentext}" required maxlength="250"> <label
-		for="bilddateilabel">Bilddatei (optional):</label><br> <input
-		type="file" name="image" id="image" accept="image/*" multiple>
+			<input type="hidden" name="modulname" value="${karteikarte.modulname}"> 
+			<label for="titel">Titel:</label><br>
+			<input type="text" id="titel" name="titel" value="${karteikarte.titel}"
+				required maxlength="50"><br>
+			<label for="fragentext">Frage:</label><br>
+	    	<input type="text" id="fragentext" name="fragentext"
+		value="${karteikarte.fragentext}" required maxlength="250"><br> 
+		<label for="bilddateilabel">Bilddatei (optional):</label><br> 
+		<input type="file" name="image" id="image" accept="image/*" multiple><br>
 		<div class="div2">
 			<label id="answer"><b>Antwortm&#246;glichkeiten:</b></label><br>
 			<label for="antwortA">Antwort A:</label> <input type="text"
@@ -59,12 +57,11 @@
 		class="input" required maxlength="500"
 		value="${karteikarte.begruendung}">
 		<button type="submit" name="submit" class="buttonSaveQuestion">Speichern</button>
-
 		</form>
-		</div>
 	<form action ="ViewTeacher_Suchen.jsp">
 			<input type="submit" value="Abbrechen" class="buttonCancel">
 	</form>
+	</div>
 		<p>Eingeloggt: ${karteikarte.userId}</p>
 </body>
 </html>

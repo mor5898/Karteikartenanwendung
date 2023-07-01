@@ -1,4 +1,4 @@
-//Erstellt durch Riza Dursun und Fatih Doruk
+//Erstellt durch Riza Dursun
 package edu.thi.bean;
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-<!-- Dieses Dokument wurde erstellt durch Moritz Reindl und Fatih Doruk-->
+<!-- Dieses Dokument wurde erstellt durch Moritz Reindl-->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" 
