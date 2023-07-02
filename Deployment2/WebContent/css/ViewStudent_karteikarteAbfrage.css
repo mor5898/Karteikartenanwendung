@@ -57,25 +57,20 @@ fieldset
 }
 .anzahlZeiger
 {
-	/* display: inline-block; */
-	/* display: inline-block;
-	margin-left:0;
-	margin-right: 0; */
 	display: flex;
-  	justify-content: space-between;
+    justify-content: left;
  	align-items: center;
  	margin-left: 23%;
 }
 .anzahlFalsch
 {
-	/* display: inline-block;
-	vertical-align: middle; */
 	font-size: 1.05em;
 	font-weight: bold;
 	border: none;
   	background-color: transparent;
   	pointer-events: none;
   	outline: none;
+  	margin-left:0;
 }
 .anzahlRichtig
 {
@@ -85,6 +80,7 @@ fieldset
   	background-color: transparent;
   	pointer-events: none;
   	outline: none;
+  	margin-left:0;
 }
 .frage
 {

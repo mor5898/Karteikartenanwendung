@@ -21,7 +21,7 @@
 			
 			<form action="../ViewTeacher_ModuleServlet" method="post">
 				<h1 class="h1">
-					<a href="ViewTeacher_Studiengaenge.jsp">Meine Studiengaenge</a>:${studienfachId.studiengangname}
+					<a href="ViewTeacher_Studiengaenge.jsp">Meine Studieng&auml;nge</a>:${studienfachId.studiengangname}
 				</h1>
 				<input type="hidden" name="userid" value="${LoginForm.userid}">
 				<input type="hidden" name="studienfachId"

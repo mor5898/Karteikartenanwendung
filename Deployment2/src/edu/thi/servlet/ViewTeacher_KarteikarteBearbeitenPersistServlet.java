@@ -29,6 +29,16 @@ import jakarta.servlet.http.Part;
  */
 @WebServlet("/ViewTeacher_KarteikarteBearbeitenPersistServlet")
 @MultipartConfig
+(
+		//>Größe der einzelnen Dateien (5MB)
+		maxFileSize=1024*1024*5,
+		//>Gesamte Größe der einzelnen Dateien (25 MB)
+		maxRequestSize=1024*1024*5*5, 
+		//>Angabe des Pfades
+		location= "/tmp",
+		//>falls Datei größer als angegeben, Auslagerung auf Platte, ansonsten auf HS (1 MB)
+		fileSizeThreshold=1024*1024
+)
 public class ViewTeacher_KarteikarteBearbeitenPersistServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -88,8 +98,15 @@ public class ViewTeacher_KarteikarteBearbeitenPersistServlet extends HttpServlet
 			stmt.setString(11, titel);
 			
 			Part filepart = request.getPart("image");
-			stmt.setBinaryStream(12, filepart.getInputStream());
-		
+			
+			if(filepart.getInputStream() != null || filepart.getInputStream().toString().length() !=0)
+			{
+				stmt.setBinaryStream(12, filepart.getInputStream());
+			}
+			else
+			{
+				stmt.setBinaryStream(12, null);
+			}
 			stmt.setString(13, karteikartenId);
 
 			int affectedRows = stmt.executeUpdate();

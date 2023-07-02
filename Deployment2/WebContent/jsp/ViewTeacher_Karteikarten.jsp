@@ -18,7 +18,7 @@
 		</p>
 		<div class="decks">
 			<h1 class="h1">
-				<a href="ViewTeacher_Studiengaenge.jsp">Meine Studiengaenge</a>: <a
+				<a href="ViewTeacher_Studiengaenge.jsp">Meine Studieng&auml;nge</a>: <a
 					href="ViewTeacher_Module.jsp">${studienfachId.studiengangname}</a>:
 				${modul.modulname}
 			</h1>
@@ -81,14 +81,12 @@
 				<table class="list">
 					<c:forEach var="karteikarte" items="${karteikarten}">
 						<tr>
-							<input type="hidden" name="karteikartenId"
-								value="${karteikarte.karteikartenId}">
 							<input type="hidden" name="fragentext"
 								value="${karteikarte.fragentext}">
 							<td>${karteikarte.titel}</td>
 							<td>${karteikarte.fragentext}</td>
-							<td><button type="submit" name="titel"
-									id="karteikarte.titel" value="${karteikarte.titel}" />Frage
+							<td><button type="submit" name="karteikartenId"
+									id="karteikarte.titel" value="${karteikarte.karteikartenId}" />Frage
 								bearbeiten</button></td>
 						</tr>
 						</tr>
@@ -96,6 +94,7 @@
 				</table>
 			</div>
 		</form>
+		
 		<p>Eingeloggt: ${LoginForm.userid}</p>
 	</div>
 </body>

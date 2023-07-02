@@ -32,7 +32,7 @@ import jakarta.servlet.http.Part;
 (
 		//>Größe der einzelnen Dateien (5MB)
 		maxFileSize=1024*1024*5,
-		//>Größe der einzelnen Dateien (25 MB)
+		//>Gesamte Größe der einzelnen Dateien (25 MB)
 		maxRequestSize=1024*1024*5*5, 
 		//>Angabe des Pfades
 		location= "/tmp",

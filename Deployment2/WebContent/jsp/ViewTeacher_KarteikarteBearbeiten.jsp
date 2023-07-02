@@ -29,14 +29,13 @@
 				name="studienfachId" value="${karteikarte.studiengangname}">
 			<input type="hidden" name="modulname"
 				value="${karteikarte.modulname}"> <label for="titel">Titel:</label><br>
-	
-	<input type="text" id="titel" name="titel" value="${karteikarte.titel}"
-		required maxlength="50"><br>
-	<label for="fragentext">Frage:</label><br>
-		 <input type="text" id="fragentext" name="fragentext"
-		value="${karteikarte.fragentext}" required maxlength="250"><br>
-		<label for="bilddateilabel">Bilddatei (optional):</label><br> 
-		<input type="file" name="image" id="image" accept="image/*" multiple>
+			<input type="text" id="titel" name="titel" class ="input" value="${karteikarte.titel}"
+				required maxlength="50"><br>
+			<label for="fragentext">Frage:</label><br>
+	    	<input type="text" id="fragentext" name="fragentext" class="input"
+		value="${karteikarte.fragentext}" required maxlength="250"><br> <label
+		for="bilddateilabel">Bilddatei (optional):</label><br> <input
+		type="file" name="image" id="image" accept="image/*" multiple>
 		<div class="div2">
 			<label id="answer"><b>Antwortm&#246;glichkeiten:</b></label><br>
 			<label for="antwortA">Antwort A:</label> <input type="text"

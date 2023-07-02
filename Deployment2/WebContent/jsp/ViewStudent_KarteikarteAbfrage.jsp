@@ -34,6 +34,7 @@
 								<div class="anzahlZeiger">
 									<label for="anzahlFalsch" class="anzahlFalsch">&#9746;:</label>
 									<input id ="anzahlFalsch" name="anzahlFalsch" class="anzahlFalsch" type="text" readonly="true" value="${currentKarteikarte.anzahlFalsch}"/>
+
 									<label for="anzahlRichtig" class="anzahlRichtig">&#9745;:</label>
 									<input id="anzahlRichtig" name="anzahlRichtig" class="anzahlRichtig" type="text" readonly="true" value="${currentKarteikarte.anzahlRichtig}"/>
 								</div>

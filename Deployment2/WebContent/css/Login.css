@@ -12,12 +12,12 @@
   overflow: auto;
   align-items: center;
   font-family: "Arial", sans-serif;
-  font-size:130%;
+  font-size:110%;
 }
 body {
   margin: 0;
   font-family: "Arial", sans-serif;
-  font-size:130%;
+  font-size:110%;
   background-color: #3cb371;
 }
 .errors{

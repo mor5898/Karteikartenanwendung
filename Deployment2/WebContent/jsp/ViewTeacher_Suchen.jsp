@@ -15,7 +15,7 @@
 				<input type="hidden" name="userid" value="${user.userid}">
 				
 				<label class="eingeloggt">Eingeloggt: ${user.userid}</label>
-				<fieldset><legend>Decks suchen</legend>
+				<fieldset><legend>Karteikarten suchen</legend>
 					<div class="suche">
 						<label>Titel der Karteikarte:</label>
 					  	<input type="text" id="schlagwort" name="schlagwort" placeholder="Hier Schlagw&ouml;rter eingeben..." maxlength="50"> 

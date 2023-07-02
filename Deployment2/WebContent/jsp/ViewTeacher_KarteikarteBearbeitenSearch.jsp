@@ -27,10 +27,10 @@
 				name="studienfachId" value="${karteikarte.studiengangname}">
 			<input type="hidden" name="modulname" value="${karteikarte.modulname}"> 
 			<label for="titel">Titel:</label><br>
-			<input type="text" id="titel" name="titel" value="${karteikarte.titel}"
+			<input type="text" id="titel" name="titel" value="${karteikarte.titel}" class="input"
 				required maxlength="50"><br>
 			<label for="fragentext">Frage:</label><br>
-	    	<input type="text" id="fragentext" name="fragentext"
+	    	<input type="text" id="fragentext" name="fragentext" class="input"
 		value="${karteikarte.fragentext}" required maxlength="250"><br> 
 		<label for="bilddateilabel">Bilddatei (optional):</label><br> 
 		<input type="file" name="image" id="image" accept="image/*" multiple><br>
