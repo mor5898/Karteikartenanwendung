@@ -70,10 +70,11 @@ public class ViewStudent_KarteikarteAbfrageServlet extends HttpServlet {
 						karteikarteBean.setAnzahlRichtig(0);
 						karteikarteBean.setAnzahlFalsch(0);
 						
-						karteikarteBean.setBildFlag(false);
-						if(rs.getBlob("bilddatei") != null)
+						karteikarteBean.setBildFlag(true);
+						
+						if(rs.getBlob("bilddatei") == null || rs.getBlob("bilddatei").length() == 0)
 						{
-							karteikarteBean.setBildFlag(true);
+							karteikarteBean.setBildFlag(false);
 						}
 						if(count == 1)
 						{

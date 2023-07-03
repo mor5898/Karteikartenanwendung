@@ -19,23 +19,18 @@
 		${karteikarte.modulname}
 	</h1>
 	<div class="div">
-		<form method="post"
-			action="../ViewTeacher_KarteikarteBearbeitenPersistServlet"
-			enctype="multipart/form-data">
-			
-			<input type="hidden" name="userid" value="${karteikarte.userId}">
-			<input type="hidden" name="karteikartenId"
-				value="${karteikarte.karteikartenId}"> <input type="hidden"
-				name="studienfachId" value="${karteikarte.studiengangname}">
-			<input type="hidden" name="modulname"
-				value="${karteikarte.modulname}"> <label for="titel">Titel:</label><br>
-			<input type="text" id="titel" name="titel" class ="input" value="${karteikarte.titel}"
-				required maxlength="50"><br>
-			<label for="fragentext">Frage:</label><br>
-	    	<input type="text" id="fragentext" name="fragentext" class="input"
-		value="${karteikarte.fragentext}" required maxlength="250"><br> <label
-		for="bilddateilabel">Bilddatei (optional):</label><br> <input
-		type="file" name="image" id="image" accept="image/*" multiple>
+		<form method="post" action="../ViewTeacher_KarteikarteBearbeitenPersistServlet" enctype="multipart/form-data">
+		<input type="hidden" name="userid" value="${karteikarte.userId}">
+		<input type="hidden" name="karteikartenId" value="${karteikarte.karteikartenId}">
+		 <input type="hidden" name="studienfachId" value="${karteikarte.studiengangname}">
+		<input type="hidden" name="modulname" value="${karteikarte.modulname}"> 
+		<label for="titel">Titel:</label><br>
+		<input type="text" id="titel" name="titel" class ="input" value="${karteikarte.titel}" required maxlength="50"><br>
+		<label for="fragentext">Frage:</label><br>
+	    <input type="text" id="fragentext" name="fragentext" class="input" value="${karteikarte.fragentext}" required maxlength="250"><br> 
+		<label for="bilddateilabel">Bilddatei (optional):</label><br> 
+		<input type="file" name="image" id="image" accept="image/*" multiple>
+		<label>Es kann nur eine Bilddatei hochgeladen werden!</label>
 		<div class="div2">
 			<label id="answer"><b>Antwortm&#246;glichkeiten:</b></label><br>
 			<label for="antwortA">Antwort A:</label> <input type="text"

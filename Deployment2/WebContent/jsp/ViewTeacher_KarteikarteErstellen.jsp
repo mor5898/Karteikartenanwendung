@@ -26,7 +26,8 @@
 		<label for="fragentext">Frage:</label>
 		<input type="text" id="fragentext" name="fragentext" class="input" required maxlength="250">
 		<label for="titel">Bilddatei (optional):</label><br>
-		<input type="file" name="image" id="image" accept="image/*" multiple><br>
+		<input type="file" name="image" id="image" accept="image/*" multiple>
+		<label>Es kann nur eine Bilddatei hochgeladen werden!</label>
 		<div class="div2">
 			<label id="answer"><b>Antwortm&#246;glichkeiten:</b></label><br>
 			<label for="antwortA">Antwort A:</label>

@@ -33,7 +33,8 @@
 	    	<input type="text" id="fragentext" name="fragentext" class="input"
 		value="${karteikarte.fragentext}" required maxlength="250"><br> 
 		<label for="bilddateilabel">Bilddatei (optional):</label><br> 
-		<input type="file" name="image" id="image" accept="image/*" multiple><br>
+		<input type="file" name="image" id="image" accept="image/*" multiple>
+		<label>Es kann nur eine Bilddatei hochgeladen werden!</label>
 		<div class="div2">
 			<label id="answer"><b>Antwortm&#246;glichkeiten:</b></label><br>
 			<label for="antwortA">Antwort A:</label> <input type="text"
